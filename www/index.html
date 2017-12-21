@@ -110,6 +110,11 @@ $(document).ready(function(){
 				$("#competitor").html(localStorage.competitorCmbo);				
 				$("#competitorQ").html(localStorage.competitorQCmbo);
 				
+				$("#comInfoStoc").html(localStorage.competitorInfo);
+				//$("#comImageDisplay").html(localStorage.competitorImage);
+				$("#mustHaveSku").html(localStorage.mustHaveSkau);
+				
+				
 				if (localStorage.show_cancel==0){
 				 cancel_outlet();
 				}
@@ -218,7 +223,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">       
 				<a data-role="button" onClick="marketPJP_check()" ><img src="market_pjp.png"></a>
                <a data-role="button" onClick="chkNotice(1)" ><img src="notice_icon.png"></a>
-               <a data-role="button" onClick="attandance()" >Attendance</a>				
+               <a data-role="button" onClick="attandance()" >Attendance</a>	
+               <!--<a data-role="button" onClick="competitor_info()" >COMPETITOR INFO</a>-->				
                 </font>
                 <br/><br/>
                 <div align="right"  style="color:#A4C5D9; width:100%; ">Version:20160723.1</div>
@@ -316,6 +322,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		</div><!-- /route page -->
         
         <!--=====================Route exception page end=============-->
+        
     
     <!--  ===================    outletPage ========================  -->
 		<div data-theme="c" data-role="page" id="outletPage">
@@ -447,6 +454,134 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 	</div>
         
     <!--=====================QPDS  page end=========================-->
+    
+    <!--==============COMPETITOR INFO Start================-->
+        <div data-theme="c" data-role="page" id="competitor_info_stock">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>COMPETITOR INFO</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+            <br/><br/>
+            <div class="outletNameShow"> </div>
+            <div style="padding:10px 0px 15px 0px"><strong>Stock</strong></div>
+            <div id="comInfoStoc"></div>
+            
+				</br></br>
+                <a data-role="button" onClick="competitor_info_stock_data();" >Next</a>
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
+              <div class="errMsg" style="color:#006291"></div>
+                <br/><br/>
+                <br/><br/><br/>
+	  </div>
+	</div>
+    
+    
+    <div data-theme="c" data-role="page" id="competitor_info_display">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>COMPETITOR INFO</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+            <br/><br/>
+            <div class="outletNameShow"> </div>
+            <div style="padding:10px 0px 15px 0px"><strong>Display</strong></div>
+            <!--<div id="comImageDisplay"></div>-->
+            <a data-role="button" id="btn_take_pic_display" onClick="getAchivementImage_display();" class="ui-btn" >Take Picture</a>       
+            <img src="" width="128" height="128" alt="Image1" id="myImageA_display" />        
+            <input name="achPhoto_display" id="achPhoto_display" value=""  type="hidden">
+            <input name="achPhoto_display_div" id="achPhoto_display_div" value=""  type="hidden">
+            <input name="achPhoto_display_name" id="achPhoto_display_name" value=""  type="hidden">
+			</br>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>Display Period (date): </td>
+                    <td ><input type="date" id="fromDate" >to</td>
+                  </tr>
+                  <tr>
+                  	<td></td>
+                    <td ><input type="date" id="toDate" ></td>
+                  </tr>
+                  <tr>
+                  	<td>Monthly Pay Out : </td>
+                    <td><input type="number" id="monthlyTK" name="monthlyTK" placeholder="TK" ></td>
+                  </tr>
+                </table>
+
+             </br>
+                <a data-role="button" onClick="competitor_info_display_data();" >Next</a>
+				<br/><br/>
+				
+              <div class="errMsg" style="color:#006291"></div>
+                <br/><br/>
+                <br/><br/><br/>
+	  </div>
+	</div>  
+    
+    
+    
+    <div data-theme="c" data-role="page" id="competitor_info_posm">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>COMPETITOR INFO</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+            <br/><br/>
+            <div class="outletNameShow"> </div>
+            <div style="padding:10px 0px 15px 0px"><strong>POSM</strong></div>
+            <!--<div id="comImageDisplay"></div>-->
+            <a data-role="button" id="btn_take_pic_posm" onClick="getAchivementImage_posm();" class="ui-btn" >Take Picture</a>       
+            <img src="" width="128" height="128" alt="Image1" id="myImageA_posm" />        
+            <input name="achPhoto_posm" id="achPhoto_posm" value=""  type="hidden">
+            <input name="achPhoto_posm_name" id="achPhoto_posm_name" value=""  type="hidden">
+            <input name="achPhoto_posm_div" id="achPhoto_posm_div" value=""  type="hidden">
+			</br> </br>
+                <a data-role="button" onClick="must_have_sku();" >Next</a>
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
+              <div class="errMsg" style="color:#006291"></div>
+                <br/><br/>
+                <br/><br/><br/>
+	  </div>
+	</div>
+    
+    
+    
+    <div data-theme="c" data-role="page" id="must_have_sku">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>MUST HAVE SKU</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+            <br/><br/>
+            <div class="outletNameShow"> </div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-weight:bold;padding:10px 0px 15px 0px">
+              <tr>
+                <td>Channel :</td>
+                <td><div id="mustHaveChannel">UNG</div></td>
+              </tr>
+            </table>
+            <div id="mustHaveSku"></div>
+            
+				</br></br>
+                <a data-role="button" onClick="must_have_sku_data();" >Next</a>
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
+              <div class="errMsg" style="color:#006291"></div>
+                <br/><br/>
+                <br/><br/><br/>
+	  </div>
+	</div>  
+        <!--=============COMPETITOR INFO End=================-->
 	
      <!-- ============================wait page Start============================-->
     
