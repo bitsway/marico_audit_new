@@ -1,0 +1,124 @@
+localStorage.synced='YES'
+localStorage.routeDone='YES'
+
+localStorage.show_cancel
+
+
+localStorage.m_new_string
+localStorage.m_new
+
+
+
+
+localStorage.cid
+localStorage.cm_id
+localStorage.cm_pass
+localStorage.synccode
+
+
+localStorage.selectedRout
+localStorage.routeExStringShow
+localStorage.routeException
+
+
+localStorage.routeIDName
+
+
+
+
+localStorage.selectedOutlet
+localStorage.outletExStringShow
+localStorage.outletException
+localStorage.outletChanne
+
+
+
+localStorage.outletNameID
+
+
+localStorage.mhskusTotal=mhskusSingleTotal
+
+var ItemQtymskus='ItemQtymskus_'+i_text
+var Itemmskus='Itemmskus_'+i_text
+
+
+
+
+localStorage.npdTotal=npdSingleTotal
+
+var ItemQtynpd='ItemQtynpd_'+i_text
+var Itemnpd='Itemnpd_'+i_text
+
+
+
+localStorage.fdisplaySlabTotal=fdisplaySlabTotal
+var fdisplayTotal='fdisplayTotal'+slab.toString()
+localStorage.fdisplayTotal=fdisplaySingleTotal
+
+var ItemQtyfdisplay='ItemQtyfdisplay_'+d.toString()
+var Itemfdisplay='Itemfdisplay_'+d.toString()
+var ItemFaceupfdisplay='ItemFaceupfdisplay_'+d.toString()
+var ItemVisiblefdisplay='ItemVisiblefdisplay_'+d.toString()
+var slabfdisplay='slabfdisplay_'+d.toString()
+var fdSLfdisplay='fdSLfdisplay_'+i_text
+
+
+
+
+
+localStorage.qpdsSlabTotal=qpdsSlabTotal
+var qpdsTotal='qpdsTotal'+slab.toString()
+localStorage.qpdsTotal=qpdsSingleTotal
+
+var ItemQtyqpds='ItemQtyqpds_'+i_text
+var Itemqpds='Itemqpds_'+i_text
+var ItemFaceupqpds='ItemFaceupqpds_'+i_text
+var ItemVisibleqpds='ItemVisibleqpds_'+i_text
+var schemeqpds='schemeqpds_'+i_text
+var qpdsSL='qpdsSL_'+i_text
+
+
+
+
+localStorage.giftTotal=giftSingleTotal
+
+var slabSchemeName_gift_f='slabSchemeNamegift_'+i_text
+var amount_gift_f='amount_gift_'+i_text
+var receivedgift_f='receivedgift_'+i_text
+var memogift_f='memogift_'+i_text
+
+var faceupgift_f='Faceupgift_'+i_text
+var visiblegift_f='Visiblegift_'+i_text
+
+
+
+
+
+
+localStorage.marchadizingTotal=marchadizingSingleTotal
+
+var itemID_mar_f='itemID_mar_'+i_text
+var itemName_mar_f='itemName_mar_'+i_text									
+var brandID_mar_f='brandID_mar_'+i_text
+var brand_mar_f='brandID_mar_'+i_text									
+var brand_mar_f='brand_mar_'+i_text
+var qty_mar_f='qty_mar_'+i_text
+var insDate_mar_f='insDate_mar_'+i_text
+var condition_mar_f='condition_mar_'+i_text
+var visible_mar_f='visible_mar_'+i_text
+var dism_mar_f='dism_mar_'+i_text
+
+
+
+$("#starDate").val(localStorage.startTime);
+
+
+localstorage.m_new=m_new
+
+
+localStorage.mhskus_data_ready=mhskus_data
+localStorage.npd_data_ready=npd_data
+localStorage.fdisplay_data_ready=fdisplay_data
+localStorage.qpds_data_ready=qpds_data
+localStorage.gift_data_ready=gift_data
+localStorage.mar_data_ready=mar_data

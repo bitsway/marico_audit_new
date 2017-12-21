@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<!-- Designed and developed by Business Solution Apps team v -->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>MARICO</title>
+        
+        <link rel="stylesheet" href="static/my.css"  />
+		
+		<link rel="stylesheet" href="static/c.min.css" />
+		<link rel="stylesheet" href="static/jquery.mobile.icons.min.css" />
+        
+        <link rel="stylesheet" href="static/jquery.mobile-1.4.0.min.css" />
+        <script src="static/jquery-1.10.2.min.js">   </script>
+        <script src="static/jquery.mobile-1.4.0.min.js">   </script>
+		<script src="static/survey.js">  </script>
+		
+        
+        <style>
+		/*.ui-content{ background-color:#484848}*/
+				.custom-size-flipswitch.ui-flipswitch .ui-btn.ui-flipswitch-on {
+			text-indent: -5.9em;
+		}
+		.custom-size-flipswitch.ui-flipswitch .ui-flipswitch-off {
+			text-indent: 0.5em;
+		}
+		/* Custom widths are needed because the length of custom labels differs from
+		   the length of the standard labels */
+		.custom-size-flipswitch.ui-flipswitch {
+			width: 8.875em;
+		}
+		.custom-size-flipswitch.ui-flipswitch.ui-flipswitch-active {
+			padding-left: 7em;
+			width: 1.875em;
+		}
+		@media (min-width: 28em) {
+			// Repeated from rule .ui-flipswitch above
+			.ui-field-contain > label + .custom-size-flipswitch.ui-flipswitch {
+				width: 1.875em;
+			}
+		}
+		input[type=number],input[type=text]{ background-color:#F4FFFF;}
+		
+		.full-width-slider input {
+			display: none;
+			
+		}
+		.full-width-slider .ui-slider-track {
+			margin-left: 15px;
+			
+		}
+		
+		li{word-wrap:break-word!important; white-space:normal!important;}
+	
+		
+		.disabledAnchor a{
+		   pointer-events: none !important;
+		   cursor: default;
+		   color:white;
+		}
+		/*.ui-page{ background-image:url(m_background.png);}*/
+		
+		</style>
+        
+   <script>
+
+$(document).ready(function(){
+				$(".errMsg").html("");
+				$("#versionDiv").hide();
+								
+				//buttonCheck();
+				$("#login_image").hide();
+				$("#routeS_image").hide();
+				
+				$("#location_button").show();
+				$("#sub_button_div").hide();
+				
+				$("#image_up_button").hide();
+				$("#NOutlet_button").hide();	
+				
+								
+				$("#lat").val(localStorage.latitude);
+				$("#long").val(localStorage.longitude);
+												
+				$('#outlet_info_msg').html(localStorage.outletNameID);
+				
+				$("#routeString").html(localStorage.routeString);
+				$("#routeExString").html(localStorage.routeExStringShow);
+				$("#outletString").html(localStorage.outletString);
+				
+				
+				$("#outletExString").html(localStorage.outletExStringShow);
+				$("#outletInfo").html(localStorage.outletinfoString);				
+								
+				$("#qpds").html(localStorage.qpdsStringShow);				
+				$("#marchadizing").html(localStorage.marchadizingStringShow);
+				
+				$("#startTime").val(localStorage.startTime);
+				$("#endTime").val(localStorage.endTime);
+				
+				
+				$("#marchadizing_add_show").html(localStorage.m_new);				
+				$("#outletName_show").html(localStorage.outletNameID);				
+				
+				$('#cancel_reason').empty();
+				$('#cancel_reason').append(localStorage.cancel_combo_str);
+								
+				$('#mar_cmbo_show').html(localStorage.marItemCmbo);				
+				$("#competitor").html(localStorage.competitorCmbo);				
+				$("#competitorQ").html(localStorage.competitorQCmbo);
+				
+				if (localStorage.show_cancel==0){
+				 cancel_outlet();
+				}
+				if (localStorage.show_cancel==1){
+				 div_change();
+				 $("#outletButton").show();
+				 
+				}
+				if (localStorage.cancel_page==0){
+					$("#next_option").hide();
+					$("#cancel_option").show()
+				}
+				if (localStorage.cancel_page==1){
+					$("#next_option").show();
+					$("#cancel_option").hide()
+				}
+				
+				//=======check sync date
+				var sync_date_get=get_date();
+				var sync_y=sync_date_get.split('-')[0];
+				var sync_m=sync_date_get.split('-')[1];
+				if (sync_m.length==1){sync_m='0'+sync_m}
+				var sync_d=sync_date_get.split('-')[2].split(' ')[0];
+				if (sync_d.length==1){sync_d='0'+sync_d}
+				var sync_date=sync_y +'-'+ sync_m +'-'+sync_d;
+				
+						
+				if ((localStorage.synced=='YES') & (localStorage.sync_date!=sync_date)){					
+					cancel_outlet();					
+					
+					localStorage.attendanceFlag=0;
+					localStorage.attendanceType="";
+					
+					var url = "#login";
+					$.mobile.navigate(url);				
+				}
+				
+				if (localStorage.latlongSubmit==1){
+					$("#location_button").hide();
+					$("#sub_button_div").show();
+				}else{
+					$("#location_button").show();
+					$("#sub_button_div").hide();
+				}
+				
+				//---check version				
+				//chkVersion();
+								
+				//shop_page_set();				
+				
+				//qpds_page_set();
+															
+								
+												
+				$(".outletNameShow").html(localStorage.outletIDnameShow);
+				
+								
+  				
+		});
+
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+}
+
+</script>  
+    </head>
+
+    <body>
+     <!--======================Menu page start==================-->        
+        <div data-theme="c" data-role="page" id="menuPage" >       
+           <div data-role="panel" id="routePanel" data-display="overlay" style="width:60%;">
+				<!-- panel content goes here -->
+				<img  src="panel_logo.png" alt="MARICO" /><br>
+				<!--<font style="color:#007D7D; font-size:25px;">MARICO UTSHOB</font>-->
+				<br><br><br>
+				
+				  <ul data-role="listview">							
+                        <div style="background:#008A8A; height:1px"></div>
+                        <li id="link_route"><a onClick="check_route()"><img src="visit_plan.png"></a></li>
+                        <div style="background:#008A8A; height:1px"></div>
+                        </br></br></br>
+                        <div style="background:#008A8A; height:1px"></div>
+                        <li><a onClick="syncPage()" ><img src="sync.png"></a></li>
+                        <div style="background:#008A8A; height:1px"></div>
+                        <!--<li><a onClick="clear_autho()" href="#login">Clear Authorization</a></li>
+                        <div style="background:#008A8A; height:1px"></div>-->
+                </ul>
+                <br>
+				<div style="margin:100%;"></div>
+				<img src="logo_gp_p_1.png" alt="GrameenPhone" />
+				
+			</div><!-- /panel -->
+            
+             <div data-theme="c" data-role="header" data-position="fixed" > 
+			
+			    <a style="height:18px;"  href="#routePanel"  ><img src="header_logo.png"  ></a>
+                <a style="height:18px;" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right " onClick="exit()" ><img src="exit.png"> </a>
+                <!--<a data-role="button" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right ui-icon-power ui-btn-icon-notext " onClick="exit()" ><img src="exit.png"> </a>-->
+                <h3>Home</h3>
+            </div>
+			
+			<div data-role="content" align="center" style="height:90%;" >
+            	<br><br>
+				
+				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">       
+				<a data-role="button" onClick="marketPJP_check()" ><img src="market_pjp.png"></a>
+               <a data-role="button" onClick="chkNotice(1)" ><img src="notice_icon.png"></a>
+               <a data-role="button" onClick="attandance()" >Attendance</a>				
+                </font>
+                <br/><br/>
+                <div align="right"  style="color:#A4C5D9; width:100%; ">Version:20160723.1</div>
+                <div class="errMsg" style="color:#006291"></div>
+                <br/><br/><br/>                
+                <!--<div id="versionDiv" style="color:#006291; height:30px; text-align:center; padding:5px; background-color:#FFFFF4; font-size:12px; border-radius:3px;"><a href="http://im-gp.com/d/maricoaudit/" target="new">New Version Available</a></div>-->                
+                
+            </div>
+        </div>    
+     <!--======================Menu page end==================-->   
+    
+      <!--  ================= login page=================  -->        
+        <div data-theme="c" data-role="page" id="login" >
+        	
+            <div data-theme="c" data-role="header" data-position="fixed" >
+			
+			   <a style="height:18px;"   onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+               <a style="height:18px;" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right " onClick="exit()" ><img src="exit.png"> </a>
+                <h3>Login</h3>
+            </div>
+			
+			<div data-role="content" style="height:90%; position:relative;" >    
+               </br></br>
+				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1"> 
+				<input type="text" name="cm_id" id="cm_id" placeholder="CM ID" value="">
+				<input type="number" name="cm_pass" id="cm_pass" placeholder="CM Pass" value="">
+                </font>                
+				
+                <div id="login_image" ><img height="40px" width="40px" src="loading.gif"></div>
+                <a id="loginButton" data-role="button"  onClick="check_user()" >Login</a>		
+                
+                </br></br>
+                
+                <!-- <a id="loginButton" data-role="button"  onClick="clear_autho()" >Clear Authorization</a>-->			
+				<div class="errMsg" style="color:#006291"></div>
+				
+					   
+            </div>
+			
+		
+			<!--<div align="right"  style="color:#A4C5D9; width:100%; ">Version:00010;20160502.1</div>-->
+        </div><!--/login page-->
+        
+
+   
+     <!--  ====================== routePage ======================  -->
+		<div data-theme="c" data-role="page" id="routePage">
+			<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style=" height:18px"   onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Select Route/Beat</h3>
+            </div>
+			<div  data-role="content" style="height:90%" >		
+             <span style=" font-size:5"> <br/><br/></span>				
+						<div id="routeString"> </div>			
+				<br/><br/>	
+                
+                <div id="routeS_image" ><img height="40px" width="40px" src="loading.gif"></div>				
+				<a id="RSButton" data-role="button" onClick="marketPJP();" >Sync Route</a>
+				
+                <div class="errMsg" style="color:#006291;" > </div>
+                <br/><br/>
+                <br/><br/><br/>
+								
+			</div>
+		 
+		</div><!-- /route page -->
+		
+      
+    
+    <!--====================Route Exception==================-->
+    <div data-theme="c" data-role="page" id="routeexceptionPage">
+		    <div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Route Exception</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >	
+             <span style=" font-size:5"> <br/><br/></span>				
+			Select Cause:
+              		<div id="routeExString"> </div>		
+			
+				<br/><br/>
+
+				<a data-role="button"  onClick="selectRouteException()" >Confirm Route Exception</a>
+
+                <div class="errMsg" style="color:#006291;"> </div>
+                <br/><br/>
+
+                <br/><br/><br/>
+								
+			</div>
+		 
+		</div><!-- /route page -->
+        
+        <!--=====================Route exception page end=============-->
+    
+    <!--  ===================    outletPage ========================  -->
+		<div data-theme="c" data-role="page" id="outletPage">
+			
+			<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a id="menujpj" style="height:18px"   onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a id="backjpj" style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+               <!-- <a id="backjpj" data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>-->
+                <h3>Select Outlet</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >  
+            <span style=" font-size:5"> <br/><br/></span>
+                <input name="startTime" id="startTime"  value="" type="hidden">
+                <div id="outletString"> </div>	
+
+
+                <div id="outletCancel" style="display:none"> 
+                Work in progress:
+                		<div  style="color:#006A6A; font-size:18px;" class="outletNameShow"></div>
+                		
+						<div id="outletWait" style="display:none">
+                        <img height="40px" width="40px" src="loading.gif">
+                        </div>
+                        <div id="outletButton" style="display:none" >
+						<a data-role="button" onClick="getlocationand_askhelp();cancel_outlet_next()" >Cancel</a>
+                        <a data-role="button" onClick="cancel_outlet_next_next();" >Next</a>
+						</div>
+						
+                </div>	
+				<div id="outletInfo1"></div>	
+                <!--<br/><br/>
+				<a data-role="button" onClick="div_change();select_outlet();" >Next</a>-->
+                
+                <div class="errMsg" style="color:#006291"> </div>
+                <br/><br/>
+
+                <br/><br/><br/>
+								
+			</div>
+		   
+		</div><!-- /outlet page -->
+		
+    
+    <!--=========================outlet page end================== -->
+     <!--====================Outlet Exception==================-->
+     
+    <div data-theme="c" data-role="page" id="outletexceptionPage">	
+		   <div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Outlet Exception</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" > 
+                <div id="outletInfo"> </div>
+				
+                </br>
+                
+                Select Cause:
+                    
+                    <div id="outletExString"> </div>
+               				
+				<br/><br/>
+				<a data-role="button" onClick="selectOutletException();" >Next</a>
+
+                <div class="errMsg" style="color:#006291;"> </div>
+                <br/><br/>
+
+                <br/><br/><br/>
+								
+	  </div>
+		   
+	</div><!-- /route page -->
+        
+        <!--=====================uotlet exception page end=============-->
+     <!--====================Outlet syncing==================-->
+     
+    <div data-theme="c" data-role="page" id="outletSyncingPage">	
+		   <div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style=" height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Outlet Info</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" > 
+                <div id="syncInfo"> </div>
+				
+                </br>
+             <div id="outletSyncmsg"> </div>
+                    
+           		<div id="outletOk">  
+                  <a data-role="button"  onClick="reloadPages()">OK</a>                    
+                  </div>               				
+				<br/><br/>
+                <div class="errMsg" style="color:#006291"></div>
+                <br/><br/>
+
+                <br/><br/><br/>
+								
+	  </div>
+		   
+	</div><!-- /route page -->
+        
+        <!--=====================Outlet syncing page end=============-->
+    
+
+    <!-- ============================QPDS  page Start============================-->
+    
+    <div data-theme="c" data-role="page" id="qpdsPage">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Promotion/Utshob</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+             <a onClick="showPaidDisplay()" data-role="button" class="ui-btn ui-btn-inline" style="float:right;">New</a>
+            <div id="qpds"></div>
+				</br></br>
+                <a data-role="button" onClick="qpds_ready_data();" >Next</a>
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
+              <div class="errMsg" style="color:#006291"></div>
+                <br/><br/>
+                <br/><br/><br/>
+	  </div>
+
+	</div>
+        
+    <!--=====================QPDS  page end=========================-->
+	
+     <!-- ============================wait page Start============================-->
+    
+    <div data-theme="c" data-role="page" id="submitPage">
+		    <div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px"   onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Submit</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+                <div class="outletNameShow"> </div>
+                </br>
+                </br>
+				<!--Location:-->
+				<input name="lat" id="lat" placesholder="" value="" type="hidden" readonly>
+			   <input name="long" id="long" placeholder="" value="" type="hidden" readonly>
+				
+			<div id="location_button">
+			<a data-role="button" onClick="getlocationand_askhelp();" style="height:50px; text-align:center; padding-top:10%;">Confirm Location</a>
+			</div>
+            
+            
+			<div id="sub_button_div">
+        	<a  data-role="button" onClick="submit_data();" style="height:50px; text-align:center; padding-top:10%;">Submit Data</a>
+			</div>			
+
+			<div id="image_up_button">
+        	<a   data-role="button" onClick="check_step();" style="height:50px; text-align:center; padding-top:10%;" >Submit Image</a>			
+			</div>
+			<div id="NOutlet_button">
+        	<a  data-role="button" onClick="cancel_outlet();menupage();" style="height:50px; text-align:center; padding-top:10%;" >Select New Outlet</a>
+			</div>
+			  
+            
+            <div id="submit_data" style="color:#006291"></div>
+            <div id="submit_data_check" style="color:#006291"></div>
+            <!--<div id="submit_msg">
+				Please Wait Submitting Data............
+			</div>-->
+			
+              <div class="errMsg" style="color:#006291"></div>
+                <br/><br/>
+                <br/><br/><br/>
+	  </div>
+
+	</div>
+        
+    <!--=====================wait page end=========================-->  
+    
+             
+ 
+   <!-- ============================notice page Start============================-->
+    
+    <div data-theme="c" data-role="page" id="noticePage">
+		    <div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Notice</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%;"  >
+            <br/><br/>
+            <div id="notice_list_show"></div>
+               
+               <!--<div id="submit_data"></div>-->
+                <br/><br/>
+                <br/><br/><br/>
+	  </div>
+
+	</div>
+        
+    <!--=====================notice page end=========================-->
+ <!-- ============================cancel  page Start============================-->
+    
+    <div data-theme="c" data-role="page" id="cancelPage">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Outside/Signboard</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+		  	<br/><br/>
+		 	 <div class="outletNameShow"> </div>
+		  	<br/>
+		  	 <div id="shop_show">
+				  <table width="100%" border="0"><tr>
+					  <tr>
+						<td><a data-role="button" href="#" onClick="get_pic_shop()" >Take Picture </a></td></tr>
+					</table>
+					<img id="shop_image_div" height="100px" width="100px"  src="" alt="Outside Image" />
+						<input type="hidden" name="shop_image_div_hidden" id="shop_image_div_hidden" value="" >
+						<input type="hidden" name="shop_image_name_hidden" id="shop_image_name_hidden" value="" >
+					</div> <!--shop_show-->			
+						</br></br>
+					<div id="cancel_option">	
+						<div id="c_reason"></div>
+						Cancel Reason:
+						<div id="cancel_reason">
+						  <!--<select name="cancel_cause" id="cancel_cause" >
+							<option value=""></option>
+							<option value="Will try later">Will try later</option>
+							<option value="Outlet is closed">Outlet is closed</option>
+							<option value="Outlet renovation">Outlet renovation</option>
+							<option value="Owner is reluctant">Owner is reluctant</option>
+							<option value="Owner not available with shop picture">Owner not available with shop picture</option>
+						  </select>-->
+						  </div> <!--cancel_reason-->
+						</br>
+				
+                <a data-role="button" onClick="cancel_outlet_Back();" >End</a>				
+				</div> <!--cancel_option-->
+                
+				<div id="next_option">
+				<!--<a data-role="button" onClick="outlet_next_page();getlocationand_askhelp();" >Next</a>getlocationand_askhelp();-->
+				<a data-role="button" onClick="outlet_next_page();" >Next</a>
+				</div>
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
+              <div class="errMsg" style="color:#006291"></div>
+                <br/><br/>
+                <br/><br/><br/>
+	  </div>
+
+	</div>
+        
+    <!--=====================cancel  page end=========================-->
+
+ <!-- ============================salfie  page Start============================-->
+    
+    <div data-theme="c" data-role="page" id="salfiePage">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Selfie</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >		  		  
+		  	<br/><br/>
+            <ul data-role="listview" data-inset="true" data-mini="true">               
+                <li style="background-color:#F2F2F2;">Attendance Type</li>                
+                <li class="ui-field-contain">
+                    <fieldset data-role="controlgroup" data-mini="true">
+                        <input name="attendance" id="1" value="Day Start" type="radio">
+                        <label for="1">Day Start</label>
+                        <input name="attendance" id="2" value="Day End" type="radio">
+                        <label for="2">Day End</label>                                                              
+                    </fieldset> 
+                  </li>
+              </ul>           
+              <br/>
+              <a data-role="button" href="#" onClick="get_salfie()" >Take Selfie </a>
+                <img id="salfie_image_div" height="100px" width="100px"  src="" alt="Image" />
+                    <input type="hidden" name="salfie_image_div_hidden" id="salfie_image_div_hidden" value="" >
+                    <input type="hidden" name="salfie_image_name_hidden" id="salfie_image_name_hidden" value="" >
+				
+				<!--<a data-role="button" onClick="outlet_next_page();getlocationand_askhelp();" >Next</a>-->
+				<a data-role="button" onClick="salfie_next_page();" >Next</a>
+				
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
+              <div class="errMsg" style="color:#006291"></div>
+                <br/><br/>
+                <br/><br/><br/>
+	  </div>
+
+	</div>
+        
+    <!--=====================salfie  page end=========================-->    
+    
+ <!-- ============================unpaid display Start============================-->
+    
+    <div data-theme="c" data-role="page" id="unpaidDisplayPage">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Unpaid Display</h3>
+            </div>
+		                
+			<div  data-role="content" style="height:90%" >
+            <br/><br/>
+		  	<div class="outletNameShow"> </div>
+		  
+		  	 <div id="shop_show">
+             	   <br/>
+				  <a data-role="button" href="#" onClick="get_pic_unpaid_display()" >Take Picture </a>
+					<img id="unpaid_image_div" height="100px" width="100px"  src="" alt="Unpaid Image" />
+						<input type="hidden" name="unpaid_image_div_hidden" id="unpaid_image_div_hidden" value="" >
+						<input type="hidden" name="unpaid_image_name_hidden" id="unpaid_image_name_hidden" value="" >
+					</div> <!--shop_show-->			
+						</br></br>
+					
+				<a data-role="button" onClick="unpaid_next_page();" >Next</a>
+				
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
+              <div class="errMsg" style="color:#006291"></div>
+                <br/><br/>
+                <br/><br/><br/>
+	  </div>
+
+	</div>
+        
+    <!--=====================unpaid display=========================-->	
+
+
+    
+ <!-- ============================New paid display Start============================-->
+ 
+     <div data-theme="c" data-role="page" id="newPaidDisplayPage">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>New Promotion/Utshob</h3>
+            </div>
+
+			<div  data-role="content" style="height:90%" >            
+				</br></br>
+                <div class="outletNameShow"></div>
+                
+                <div id="outletScheme"></div>
+                <a data-role="button" onClick="addPaidDisplay();" >Next</a>
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
+              <div class="errMsg" style="color:#006291"></div>
+                <br/><br/>
+                <br/><br/><br/>
+	  </div>
+
+	</div>
+        
+    <!--=====================New paid display=========================-->	    
+
+  <!-- ============================posm Start============================-->
+    
+    <div data-theme="c" data-role="page" id="posmPage">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>POSM</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+            <br/><br/>
+		  
+		  <div class="outletNameShow"> </div>
+          
+          <div id="mar_cmbo_show"></div>
+          <input id="posm_qty" name="posm_Qty" type="number" style="height:42px; font-size:14px;" />
+          <a data-role="button"  onClick="add_posm()" >ADD </a>
+          
+          <table id="tblPosm" class="ui-body-d ui-shadow table-stripe ui-responsive" data-role="table" data-theme="d"  data-mode="display:none" >
+          	<tr>
+            	<td width="50%" >Item</td>
+                <td width="40%" >Qty</td>
+                <td width="10%"></td>
+            </tr>          
+          </table>
+          
+		  
+         <div id="shop_show">
+            <a data-role="button" href="#" onClick="get_pic_posm()" >Take Picture </a>
+            <img id="posm_image_div" height="100px" width="100px"  src="" alt="Image" />
+            <input type="hidden" name="posm_image_div_hidden" id="posm_image_div_hidden" value="" >
+            <input type="hidden" name="posm_image_name_hidden" id="posm_image_name_hidden" value="" >
+            </div> <!--shop_show-->			
+                </br></br>
+            
+        	<a data-role="button" onClick="posm_next_page();" >Next</a>
+        
+        	<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+            
+          <div class="errMsg" style="color:#006291"></div>
+            <br/><br/>
+            <br/><br/><br/>
+	  </div>
+
+	</div>
+        
+    <!--=====================posm=========================-->
+  
+
+  <!-- ============================competitor Start============================  -->
+    
+    <div data-theme="c" data-role="page" id="competitorPage">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Competitor Activity</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+		  <br/> <br/>
+		  <div class="outletNameShow"> </div>
+		  
+		  	 <div id="shop_show">
+             	<table width="100%" >
+                	<tr>                    	
+                        <td colspan="2" width="100%">
+                        	<div id="competitor"></div> 
+                        </td>
+                    </tr>
+                    <tr>
+                    	<td width="10%">Q.</td>
+                        <td width="90%" ><div id="competitorQ"></div></td>
+                    </tr>
+                    <tr>
+                    	<td width="10%">Ans.</td>
+                        <td width="90%"><textarea id="copmA" name="compA" cols="20" rows="5" maxlength="100"></textarea></td>
+                    </tr>
+                    <tr>
+                    	<td colspan="2"><a data-role="button"  onClick="add_comp_data()" >ADD </a></td>                        
+                    </tr>                    
+                </table> 
+                
+                <table id="tblComp" class="ui-body-d ui-shadow table-stripe ui-responsive" data-role="table" data-theme="d"  data-mode="display:none" data-mini="true" style="text-align:center;">
+                	<tr>
+                    	<td width="20%">Competitor</td>
+                        <td width="40%">Q</td>
+                        <td width="40%">Ans.</td>
+                        <td width="5%"></td>
+                    </tr>
+                </table>      	
+                                                                      	
+                   <br/>          
+				  <a data-role="button" href="#" onClick="get_pic_competitor()" >Take Picture </a>
+                  
+					<img id="competitor_image_div" height="100px" width="100px"  src="" alt="Image" />
+						<input type="hidden" name="competitor_image_div_hidden" id="competitor_image_div_hidden" value="" >
+						<input type="hidden" name="competitor_image_name_hidden" id="competitor_image_name_hidden" value="" >
+					</div> <!--shop_show-->			
+						</br></br>
+					
+				<a data-role="button" onClick="competitor_next_page();" >Next</a>
+				
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
+              <div class="errMsg" style="color:#006291"></div>
+                <br/><br/>
+                <br/><br/><br/>
+	  </div>
+
+	</div>
+        
+    <!--===================== competitor =========================-->
+
+ 
+ 
+
+
+  <!-- ============================selfPositionPage Start============================  -->
+    
+    <div data-theme="c" data-role="page" id="selfPositionPage">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Shelf Position</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+		  <br/> <br/>
+		  <div class="outletNameShow"> </div>
+		  
+		  	 <div id="shop_show">
+				  <a data-role="button" href="#" onClick="get_pic_self()" >Take Picture </a></td></tr>
+					
+					<img id="self_image_div" height="100px" width="100px"  src="" alt="Shelf" />
+						<input type="hidden" name="self_image_div_hidden" id="self_image_div_hidden" value="" >
+						<input type="hidden" name="self_image_name_hidden" id="self_image_name_hidden" value="" >
+					</div> <!--shop_show-->			
+						</br></br>
+					
+				<a data-role="button" onClick="self_position_next_page();" >Next</a>
+				
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
+              <div class="errMsg" style="color:#006291"></div>
+                <br/><br/>
+                <br/><br/><br/>
+	  </div>
+
+	</div>
+        
+    <!--===================== self position =========================-->
+
+
+  <!-- ============================survey Start============================  -->
+    
+    <div data-theme="c" data-role="page" id="surveyPage">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Survey</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+		  
+		  <div class="outletNameShow"> </div>
+		  
+		  	 <div id="survey_chk">
+				  <br/>
+                    <fieldset data-role="controlgroup" data-mini="true" >
+                        <input name="survey_1" id="survey_1" value="1" type="checkbox">
+                        <label for="survey_1">দোকানে আপনার পন্যগুলো সঠিকভাবে সাজানো আছে তো?</label>
+                        <input name="survey_2" id="survey_2" value="1" type="checkbox">
+                        <label for="survey_2">ডিসপ্লে দোকানগুলোতে আপনার পন্যগুলো প্লানোগ্রাম অনু্যায়ী সাজ়ানো আছে তো?</label>
+                        <input name="survey_3" id="survey_3" value="1" type="checkbox">
+                        <label for="survey_3">ডিসপ্লেতে সাজ়ানো পন্যগুলো ক্রেতার দৃষ্টি আকর্ষণ করছে তো?</label>
+                        <input name="survey_4" id="survey_4" value="1" type="checkbox">
+                        <label for="survey_4">দোকানে সাজ়ানো পন্যগুলো এবং পি.ও.এস সামগ্রীগুলো ক্রেতার দৃষ্টিগোচর হচ্ছে তো?</label>
+                        <input name="survey_5" id="survey_5" value="1" type="checkbox">
+                        <label for="survey_5">পণ্য সম্পর্কে সচেতনতা বৃদ্ধির জন্য পি.ও.এস সামগ্রীগুলো নির্দেশনা অনূযায়ী ব্যবহার হয়েছে তো?</label>
+                        <input name="survey_6" id="survey_6" value="1" type="checkbox">
+                        <label for="survey_6">পন্য ও পি.ও.এস সামগ্রীগুলো পরিচ্ছন্নতা বজ়ায় রাখা হয়েছে তো?</label>                        
+                    </fieldset>
+					
+					</div> <!--shop_show-->			
+						</br></br>
+					
+				<a data-role="button" onClick="survey_next_page();" >Next</a>
+				
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
+              <div class="errMsg" style="color:#006291"></div>
+                <br/><br/>
+                <br/><br/><br/>
+	  </div>
+
+	</div>
+        
+    <!--===================== competitor =========================-->
+
+
+ 
+ 
+ <script type="text/javascript" src="phonegap.js"></script>
+ 
+ 
+ 
+    </body>
+</html>
