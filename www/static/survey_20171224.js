@@ -4,7 +4,7 @@
 
 // online
 var apipath='http://w02.yeapps.com/marico18/syncmobile_schedule_20171220/';
-var apipath_image = 'http://e3.businesssolutionapps.com/marico/';
+var apipath_image = 'http://w02.yeapps.com/marico18/';
 
 
 // local
@@ -2243,7 +2243,7 @@ function syncOutlet() {
 				var actualQty='actualQty_'+itexT
 				
 				mustHaveStr=mustHaveStr+
-								   '<tr ><td >&nbsp;</td><td>'+brandMustHav+'<input type="hidden" name="'+brandMustHavID+'" id="'+brandMustHavID+'" value="'+brandMustHav+'" min="0"></td><td>'+skau_name+'<input type="hidden" name="'+skauName+'" id="'+skauName+'" value="'+skau_name+'" min="0"></td><td width="80px"> <input type="number" name="'+actualQty+'" id="'+actualQty+'" value="" min="0"></td></tr>'
+								   '<tr ><td >&nbsp;</td><td>'+brandMustHav+'<input type="hidden" name="'+brandMustHavID+'" id="'+brandMustHavID+'" value="'+brandMustHav+'" min="0"></td><td>'+skau_name+'<input type="hidden" name="'+skauName+'" id="'+skauName+'" value="'+skau_name+'" min="0"></td><td width="50px"> <input type="number" name="'+actualQty+'" id="'+actualQty+'" value="" min="0"></td></tr>'
 				
 				mustHaveStr=mustHaveStr+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td></tr>'
 							  	
@@ -2424,7 +2424,7 @@ function competitor_info_display_data(){
 	
 	today = new Date()
 	
-	/*if (fromDate=="" || toDate==""){
+	if (fromDate=="" || toDate==""){
 		$(".errMsg").html("Required Display Period Date");
 	}else if(fromDate > toDate){
 		$(".errMsg").html("Invalid Display Period Date");
@@ -2434,13 +2434,13 @@ function competitor_info_display_data(){
 		$(".errMsg").html("Invalid Display Period To Date");
 	}else if(monthlyTK==""){
 		$(".errMsg").html("Required Monthly Pay Out");
-	}else if(achPhoto_display=="" || achPhoto_display==undefined){
-		$(".errMsg").html("Please confirm Photo");
-	}else{*/
+	/*}else if(achPhoto_display=="" || achPhoto_display==undefined){
+		$(".errMsg").html("Please confirm Photo");*/
+	}else{
 		
 		$(".errMsg").html("");
 		$.mobile.navigate("#competitor_info_posm");	
-	//}
+	}
 }
 
 
@@ -2752,7 +2752,7 @@ function getAchivementImage_display() {
 }
 
 function onSuccessA(imageURI) {	
-	var image = document.getElementById('myImageA_display');
+	var image = document.getElementById('achPhoto_display');
     image.src = imageURI;
     var hidden_path="achPhoto_display_div";
 	$("#"+hidden_path).val(imageURI);	
@@ -2776,7 +2776,7 @@ function getAchivementImage_posm() {
 }
 
 function onSuccessB(imageURI) {
-	var image = document.getElementById('myImageA_posm');
+	var image = document.getElementById('achPhoto_posm');
     image.src = imageURI;
     var hidden_path="achPhoto_posm_div";
 	$("#"+hidden_path).val(imageURI);	
