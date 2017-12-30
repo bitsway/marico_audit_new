@@ -209,7 +209,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 				
 			</div><!-- /panel -->
             
-             <div data-theme="c" data-role="header" data-position="fixed" > 
+             <div data-theme="c" data-role="header" data-position="fixed"  > 
 			
 			    <a style="height:18px;"  href="#routePanel"  ><img src="header_logo.png"  ></a>
                 <a style="height:18px;" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right " onClick="exit()" ><img src="exit.png"> </a>
@@ -220,14 +220,14 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			<div data-role="content" align="center" style="height:90%;" >
             	<br><br>
 				
-				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">       
+				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">
+                <a data-role="button" onClick="attandance()" ><strong style="font-size:24px;">Attendance</strong></a>       
 				<a data-role="button" onClick="marketPJP_check()" ><img src="market_pjp.png"></a>
-               <a data-role="button" onClick="chkNotice(1)" ><img src="notice_icon.png"></a>
-               <a data-role="button" onClick="attandance()" >Attendance</a>	
+               <a data-role="button" onClick="chkNotice(1)" ><img src="notice_icon.png"></a>               	
                <!--<a data-role="button" onClick="competitor_info()" >COMPETITOR INFO</a>-->				
                 </font>
                 <br/><br/>
-                <div align="right"  style="color:#A4C5D9; width:100%; ">Version:20171224.1</div>
+                <div align="right"  style="color:#A4C5D9; width:100%; ">Version:20171230.1</div>
                 <div class="errMsg" style="color:#006291"></div>
                 <br/><br/><br/>                
                 <!--<div id="versionDiv" style="color:#006291; height:30px; text-align:center; padding:5px; background-color:#FFFFF4; font-size:12px; border-radius:3px;"><a href="http://im-gp.com/d/maricoaudit/" target="new">New Version Available</a></div>-->                
@@ -250,7 +250,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                </br></br>
 				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1"> 
 				<input type="text" name="cm_id" id="cm_id" placeholder="CM ID" value="">
-				<input type="number" name="cm_pass" id="cm_pass" placeholder="CM Pass" value="">
+				<input type="password" name="cm_pass" id="cm_pass" placeholder="CM Pass" value="" >
                 </font>                
 				
                 <div id="login_image" ><img height="40px" width="40px" src="loading.gif"></div>
@@ -436,7 +436,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<div data-theme="c" data-role="header" data-position="fixed" >
 			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
-                <h3>Promotion/Utshob</h3>
+                <h3>Promotion</h3>
             </div>
 		    
 			<div  data-role="content" style="height:90%" >
@@ -460,7 +460,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<div data-theme="c" data-role="header" data-position="fixed" >
 			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
-                <h3>COMPETITOR INFO</h3>
+                <h3><span style="font-size:14px; text-align:center; font-weight:bold;">Competitor Info</span></h3>
             </div>
 		    
 			<div  data-role="content" style="height:90%" >
@@ -484,7 +484,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<div data-theme="c" data-role="header" data-position="fixed" >
 			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
-                <h3>COMPETITOR INFO</h3>
+                <h3><span style="font-size:14px; text-align:center; font-weight:bold;">Competitor Info</span></h3>
             </div>
 		    
 			<div  data-role="content" style="height:90%" >
@@ -530,7 +530,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<div data-theme="c" data-role="header" data-position="fixed" >
 			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
-                <h3>COMPETITOR INFO</h3>
+                <h3><span style="font-size:14px; text-align:center; font-weight:bold;">Competitor Info</span></h3>
             </div>
 		    
 			<div  data-role="content" style="height:90%" >
@@ -559,7 +559,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<div data-theme="c" data-role="header" data-position="fixed" >
 			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
-                <h3>MUST HAVE SKU</h3>
+                <h3>Must Have Sku</h3>
             </div>
 		    
 			<div  data-role="content" style="height:90%" >
@@ -664,7 +664,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<div data-theme="c" data-role="header" data-position="fixed" >
 			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
-                <h3>Outside/Signboard</h3>
+                <h3>Shop-sign/Marker</h3>
             </div>
 		    
 			<div  data-role="content" style="height:90%" >
@@ -725,6 +725,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		    
 			<div  data-role="content" style="height:90%" >		  		  
 		  	<br/><br/>
+            <div id="currentDate" style="text-align:center; font-size:20px; font-weight:bold;"></div>
             <ul data-role="listview" data-inset="true" data-mini="true">               
                 <li style="background-color:#F2F2F2;">Attendance Type</li>                
                 <li class="ui-field-contain">

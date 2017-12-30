@@ -8,8 +8,8 @@ var apipath_image = 'http://w02.yeapps.com/marico18/';
 
 
 // local
-//var apipath='http://127.0.0.1:8000/marico/syncmobile_schedule_20171220/';
-//var apipath_image = 'http://127.0.0.1:8000/marico/';
+//var apipath='http://127.0.0.1:8000/marico18/syncmobile_schedule_20171220/';
+//var apipath_image = 'http://127.0.0.1:8000/marico18/';
 
 
 
@@ -104,7 +104,7 @@ function syncPage(){
 //--- version
 function chkVersion(){
 	
-	var presentVDate="2016/06/14"; //  2016/06/14
+	var presentVDate="2017/12/30"; //  2016/06/14
 	
 	//alert(apipath+'sync_app_version?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode);
 	
@@ -195,6 +195,18 @@ function chkNotice(m){
 function attandance(){
 	$(".errMsg").html("");
 	$("input:radio").removeAttr('checked');
+	
+	var d = new Date();
+	var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+	
+	var today = new Date();
+	var dd = today.getDate();
+	var allM = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+	var mm=allM[today.getMonth()];
+	var yyyy=today.getFullYear();
+	
+	document.getElementById("currentDate").innerHTML =  dd +' '+ mm +' '+yyyy +' | '+ days[d.getDay()];	
+	
 	$.mobile.navigate("#salfiePage");
 	}
 
@@ -226,15 +238,17 @@ function salfie_next_page(){
 							localStorage.attendanceType=attendance;
 							
 							if (localStorage.attendanceType=="Day Start"){
-								localStorage.attendanceFlag=1;
+								localStorage.attendanceFlag=1;								
 							}else{
 								localStorage.attendanceFlag=0;
 								localStorage.attendanceType="";
 							}														
 							upload_salfie()
+									
 						}else if(result=='Already Exists'){
 							localStorage.attendanceFlag=1;
-							$(".errMsg").html(result);							
+							$(".errMsg").html(result);
+							$.mobile.navigate("#routePage");												
 						}else{
 							$(".errMsg").html(result);						
 						}
@@ -1452,7 +1466,7 @@ function marketPJP() {
 											
 											localStorage.allOutletString=allOutletString;
 											
-											
+											alert(localStorage.allOutletString);
 											//	============Create exception list============	
 																	
 											var outletExStringShow=''
@@ -1493,7 +1507,7 @@ function marketPJP() {
 												outletColor="";
 												
 												outletStringShow=outletStringShow+'<label ><table width="100%" border="0"> <tr> <td width="5%">'+
-																'<input type="radio" name="RadioOutlet" value="'+outletID+'rdrd'+schedule_date+'"></td><td width="80%">'+outletName +' | '+ outletID +' | '+ channel +'</td><td width="15%">'+ total_visit+'/'+total_visit_done+' </td>	<td>'+outletColor+'</td> </tr></table></label>'
+																'<input type="radio" name="RadioOutlet" value="'+outletID+'rdrd'+schedule_date+'"></td><td width="80%">'+outletName +' | '+ outletID +' | '+ channel +'</td><td width="15%">'+total_visit_done+'/'+total_visit+' </td>	<td>'+outletColor+'</td> </tr></table></label>'
 											
 												
 											}
@@ -1511,7 +1525,7 @@ function marketPJP() {
 											
 											localStorage.outletString=outletStringShow
 											$("#outletString").html(localStorage.outletString);
-											
+											alert(localStorage.outletString);
 											
 											$("#routeS_image").hide();
 											$("#RSButton").show();
@@ -2424,24 +2438,13 @@ function competitor_info_display_data(){
 	
 	today = new Date()
 	
-	/*if (fromDate=="" || toDate==""){
-		$(".errMsg").html("Required Display Period Date");
-	}else if(fromDate > toDate){
+	if(fDate_chk > tDate_chk){
 		$(".errMsg").html("Invalid Display Period Date");
-	}else if(fDate_chk > today){
-		$(".errMsg").html("Invalid Display Period From Date");
-	}else if(tDate_chk > today){
-		$(".errMsg").html("Invalid Display Period To Date");
-	}else if(monthlyTK==""){
-		$(".errMsg").html("Required Monthly Pay Out");
-	}else if(achPhoto_display=="" || achPhoto_display==undefined){
-		$(".errMsg").html("Please confirm Photo");
-	}else{*/
-		
-		$(".errMsg").html("");
-		$.mobile.navigate("#competitor_info_posm");	
-	//}
+	}else{
+		$.mobile.navigate("#competitor_info_posm");
+	}
 }
+	
 
 
 
@@ -2649,7 +2652,7 @@ function submit_data() {
 	
 	
 	//$("#submit_data_check").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx=&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&comInfoStockData='+localStorage.comInfStData+'&fromDate='+fromDate+'&toDate='+toDate+'&monthlyTK='+monthlyTK+'&imageName='+imageName+'&imageNamePosm='+imageNamePosm+'&mustHaveData='+localStorage.mustHData+'&giftImage=&mhskus_data=&npd_data=&fdisplay_data=&qpds_data='+encodeURIComponent(qpds_data)+'&salfie_data=&gift_data=&place_data=&shop_data='+localStorage.shop_data_ready+'&unpaid_data=&posm_data=&competitor_data=&self_data=&survey_data=0,0,0,0,0,0');	
-	//alert(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx=&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&comInfoStockData='+localStorage.comInfStData+'&fromDate='+fromDate+'&toDate='+toDate+'&monthlyTK='+monthlyTK+'&imageName='+display_comp_name+'&imageNamePosm='+posm_comp_name+'&mustHaveData='+localStorage.mustHData+'&giftImage=&mhskus_data=&npd_data=&fdisplay_data=&qpds_data='+encodeURIComponent(qpds_data)+'&salfie_data=&gift_data=&place_data=&shop_data='+localStorage.shop_data_ready+'&unpaid_data=&posm_data=&competitor_data=&self_data=&survey_data=0,0,0,0,0,0');
+	alert(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx=&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&comInfoStockData='+localStorage.comInfStData+'&fromDate='+fromDate+'&toDate='+toDate+'&monthlyTK='+monthlyTK+'&imageName='+display_comp_name+'&imageNamePosm='+posm_comp_name+'&mustHaveData='+localStorage.mustHData+'&giftImage=&mhskus_data=&npd_data=&fdisplay_data=&qpds_data='+encodeURIComponent(qpds_data)+'&salfie_data=&gift_data=&place_data=&shop_data='+localStorage.shop_data_ready+'&unpaid_data=&posm_data=&competitor_data=&self_data=&survey_data=0,0,0,0,0,0');
 	
 	$.ajax({
 				type: 'POST',
