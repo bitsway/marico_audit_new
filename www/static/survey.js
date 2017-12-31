@@ -1466,7 +1466,7 @@ function marketPJP() {
 											
 											localStorage.allOutletString=allOutletString;
 											
-											alert(localStorage.allOutletString);
+											//alert(localStorage.allOutletString);
 											//	============Create exception list============	
 																	
 											var outletExStringShow=''
@@ -1525,7 +1525,7 @@ function marketPJP() {
 											
 											localStorage.outletString=outletStringShow
 											$("#outletString").html(localStorage.outletString);
-											alert(localStorage.outletString);
+											//alert(localStorage.outletString);
 											
 											$("#routeS_image").hide();
 											$("#RSButton").show();
@@ -2652,7 +2652,7 @@ function submit_data() {
 	
 	
 	//$("#submit_data_check").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx=&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&comInfoStockData='+localStorage.comInfStData+'&fromDate='+fromDate+'&toDate='+toDate+'&monthlyTK='+monthlyTK+'&imageName='+imageName+'&imageNamePosm='+imageNamePosm+'&mustHaveData='+localStorage.mustHData+'&giftImage=&mhskus_data=&npd_data=&fdisplay_data=&qpds_data='+encodeURIComponent(qpds_data)+'&salfie_data=&gift_data=&place_data=&shop_data='+localStorage.shop_data_ready+'&unpaid_data=&posm_data=&competitor_data=&self_data=&survey_data=0,0,0,0,0,0');	
-	alert(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx=&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&comInfoStockData='+localStorage.comInfStData+'&fromDate='+fromDate+'&toDate='+toDate+'&monthlyTK='+monthlyTK+'&imageName='+display_comp_name+'&imageNamePosm='+posm_comp_name+'&mustHaveData='+localStorage.mustHData+'&giftImage=&mhskus_data=&npd_data=&fdisplay_data=&qpds_data='+encodeURIComponent(qpds_data)+'&salfie_data=&gift_data=&place_data=&shop_data='+localStorage.shop_data_ready+'&unpaid_data=&posm_data=&competitor_data=&self_data=&survey_data=0,0,0,0,0,0');
+	//alert(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx=&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&comInfoStockData='+localStorage.comInfStData+'&fromDate='+fromDate+'&toDate='+toDate+'&monthlyTK='+monthlyTK+'&imageName='+display_comp_name+'&imageNamePosm='+posm_comp_name+'&mustHaveData='+localStorage.mustHData+'&giftImage=&mhskus_data=&npd_data=&fdisplay_data=&qpds_data='+encodeURIComponent(qpds_data)+'&salfie_data=&gift_data=&place_data=&shop_data='+localStorage.shop_data_ready+'&unpaid_data=&posm_data=&competitor_data=&self_data=&survey_data=0,0,0,0,0,0');
 	
 	$.ajax({
 				type: 'POST',
