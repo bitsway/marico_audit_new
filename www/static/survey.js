@@ -3,12 +3,12 @@
 // Put your custom code here
 
 // online
-var apipath='http://w02.yeapps.com/marico18/syncmobile_schedule_20171220/';
+var apipath='http://w02.yeapps.com/marico18/syncmobile_schedule_20171231/';
 var apipath_image = 'http://w02.yeapps.com/marico18/';
 
 
 // local
-//var apipath='http://127.0.0.1:8000/marico18/syncmobile_schedule_20171220/';
+//var apipath='http://127.0.0.1:8000/marico18/syncmobile_schedule_20171231/';
 //var apipath_image = 'http://127.0.0.1:8000/marico18/';
 
 
@@ -104,7 +104,7 @@ function syncPage(){
 //--- version
 function chkVersion(){
 	
-	var presentVDate="2017/12/30"; //  2016/06/14
+	var presentVDate="2017/12/31"; //  2016/06/14
 	
 	//alert(apipath+'sync_app_version?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode);
 	
@@ -1466,7 +1466,7 @@ function marketPJP() {
 											
 											localStorage.allOutletString=allOutletString;
 											
-											alert(localStorage.allOutletString);
+											//alert(localStorage.allOutletString);
 											//	============Create exception list============	
 																	
 											var outletExStringShow=''
@@ -1525,7 +1525,7 @@ function marketPJP() {
 											
 											localStorage.outletString=outletStringShow
 											$("#outletString").html(localStorage.outletString);
-											alert(localStorage.outletString);
+											//alert(localStorage.outletString);
 											
 											$("#routeS_image").hide();
 											$("#RSButton").show();
@@ -2652,7 +2652,7 @@ function submit_data() {
 	
 	
 	//$("#submit_data_check").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx=&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&comInfoStockData='+localStorage.comInfStData+'&fromDate='+fromDate+'&toDate='+toDate+'&monthlyTK='+monthlyTK+'&imageName='+imageName+'&imageNamePosm='+imageNamePosm+'&mustHaveData='+localStorage.mustHData+'&giftImage=&mhskus_data=&npd_data=&fdisplay_data=&qpds_data='+encodeURIComponent(qpds_data)+'&salfie_data=&gift_data=&place_data=&shop_data='+localStorage.shop_data_ready+'&unpaid_data=&posm_data=&competitor_data=&self_data=&survey_data=0,0,0,0,0,0');	
-	alert(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx=&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&comInfoStockData='+localStorage.comInfStData+'&fromDate='+fromDate+'&toDate='+toDate+'&monthlyTK='+monthlyTK+'&imageName='+display_comp_name+'&imageNamePosm='+posm_comp_name+'&mustHaveData='+localStorage.mustHData+'&giftImage=&mhskus_data=&npd_data=&fdisplay_data=&qpds_data='+encodeURIComponent(qpds_data)+'&salfie_data=&gift_data=&place_data=&shop_data='+localStorage.shop_data_ready+'&unpaid_data=&posm_data=&competitor_data=&self_data=&survey_data=0,0,0,0,0,0');
+	//alert(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx=&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&comInfoStockData='+localStorage.comInfStData+'&fromDate='+fromDate+'&toDate='+toDate+'&monthlyTK='+monthlyTK+'&imageName='+display_comp_name+'&imageNamePosm='+posm_comp_name+'&mustHaveData='+localStorage.mustHData+'&giftImage=&mhskus_data=&npd_data=&fdisplay_data=&qpds_data='+encodeURIComponent(qpds_data)+'&salfie_data=&gift_data=&place_data=&shop_data='+localStorage.shop_data_ready+'&unpaid_data=&posm_data=&competitor_data=&self_data=&survey_data=0,0,0,0,0,0');
 	
 	$.ajax({
 				type: 'POST',
@@ -3278,9 +3278,7 @@ function uploadPhoto(imageURI, imageName) {
 
   var ft = new FileTransfer();
 
-//ft.upload(imageURI, encodeURI("http://127.0.0.1:8000/marico/syncmobile_schedule/fileUploader/"),win,fail,options);
-
- ft.upload(imageURI, encodeURI("http://e4.businesssolutionapps.com/marico_image/syncmobile/fileUploader/"),win,fail,options);
+ ft.upload(imageURI, encodeURI("http://i001.yeapps.com/image_hub/marico_audit/upload_image/"),win,fail,options);
 }
 
 function win(r) {
