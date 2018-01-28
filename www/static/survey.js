@@ -3,12 +3,12 @@
 // Put your custom code here
 
 // online
-var apipath='http://w02.yeapps.com/marico18/syncmobile_schedule_20171220/';
+var apipath='http://w02.yeapps.com/marico18/syncmobile_schedule_20171231/';
 var apipath_image = 'http://w02.yeapps.com/marico18/';
 
 
 // local
-//var apipath='http://127.0.0.1:8000/marico18/syncmobile_schedule_20171220/';
+//var apipath='http://127.0.0.1:8000/marico18/syncmobile_schedule_20171231/';
 //var apipath_image = 'http://127.0.0.1:8000/marico18/';
 
 
@@ -97,14 +97,21 @@ function exit() {
 function syncPage(){	
 	$(".errMsg").html('');
 	$.mobile.navigate("#login");
-	
 	}
+	
+function menu_page(){	
+	$(".errMsg").html('');
+	$.mobile.navigate("#menuPage");
+	}	
 
+function backClick(){
+	$(".errMsg").text("");
+}
 
 //--- version
 function chkVersion(){
 	
-	var presentVDate="2017/12/30"; //  2016/06/14
+	var presentVDate="2018/01/25"; //  2016/06/14
 	
 	//alert(apipath+'sync_app_version?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode);
 	
@@ -244,11 +251,16 @@ function salfie_next_page(){
 								localStorage.attendanceType="";
 							}														
 							upload_salfie()
+							
+							/*if (localStorage.attendanceFlag==1){ // Faisal
+								$.mobile.navigate("#routePage");	
+							}*/
 									
 						}else if(result=='Already Exists'){
-							localStorage.attendanceFlag=1;
-							$(".errMsg").html(result);
-							$.mobile.navigate("#routePage");												
+							
+							//$(".errMsg").html(result); // Faisal
+							$.mobile.navigate("#menuPage");// Faisal
+							//$.mobile.navigate("#routePage");												
 						}else{
 							$(".errMsg").html(result);						
 						}
@@ -918,6 +930,7 @@ function check_user() {
 	$(".errMsg").html("");
 	var cm_id=$("#cm_id").val();
 	var cm_pass=$("#cm_pass").val();
+		
 	if (cm_id=="" || cm_id==undefined || cm_pass=="" || cm_pass==undefined){
 		var url = "#login";      
 		$.mobile.navigate(url);
@@ -1143,7 +1156,7 @@ function check_user() {
 									
 								}
 								localStorage.routeString=routeStringShow
-								
+								//alert(localStorage.routeString);
 								$("#routeString").html(localStorage.routeString);
 							
 							//=======end route list====================
@@ -1166,7 +1179,8 @@ function check_user() {
 							}
 							if ((resultArray[0]=='SUCCESS') && (localStorage.route==undefined)){
 								
-								var url = "#routePage";
+								var url = "#menuPage";// Faisal
+								//var url = "#routePage";
 								$.mobile.navigate(url);
 								
 								$('#routePage').trigger('create');
@@ -1536,7 +1550,7 @@ function marketPJP() {
 												
 												$(".errMsg").html('');
 												
-												var url = "#menuPage";
+												var url = "#outletPage";												
 											   $.mobile.navigate(url);	
 											}
 											else {
@@ -1577,21 +1591,25 @@ function marketPJP() {
 
 
 function marketPJP_check() { 
-	$(".errMsg").html("");
+	/*$(".errMsg").html("");
+	var url = "#routePage";
+	$.mobile.navigate(url);*/
 	
+	
+	//alert(localStorage.attendanceFlag);
 	if(localStorage.attendanceFlag==1){	
-		if(localStorage.selectedRoute!=undefined){		
-			if (localStorage.route==''){
+		//if(localStorage.selectedRoute!=undefined){		
+			//if (localStorage.route==''){
 				var url = "#routePage";
 				$.mobile.navigate(url);	
-			}
-			if (localStorage.route!=''){					
+			//}
+			/*if (localStorage.route!=''){					
 				var url = "#outletPage";
 				$.mobile.navigate(url);
 				$(url).trigger('create');				
-			}
+			}*/
 	
-		}
+		//}
 	}else{
 		$(".errMsg").html("Required attendance");
 	}
@@ -2977,7 +2995,7 @@ function upload_display(){
 	
 	var image_name_display=$("#achPhoto_display_name").val();
 	var display_image_path=$("#achPhoto_display_div").val();
-			
+		
 	if (image_name_display.length >10){
 		uploadPhoto(display_image_path, image_name_display);
 		$("#submit_data").html("");
@@ -3285,14 +3303,23 @@ function win(r) {
 	file_upload_error = 0;
 	
 	if (localStorage.step_flag==0){  // Shop
-		//alert('win-0')
-		$("#submit_data").html("salfie Sync Completted");
-		localStorage.step_flag=1;
-		localStorage.salfiedataSubmit=1;
-		
-		var url = "#menuPage";
-		$.mobile.navigate(url);	
-		$('#menuPage').trigger('create');
+		if (localStorage.attendanceFlag==1){	// Faisal #if condition	
+			$("#submit_data").html("salfie Sync Completted");
+			localStorage.step_flag=1;
+			localStorage.salfiedataSubmit=1;
+			
+			var url = "#routePage";
+			$.mobile.navigate(url);	
+			$('#routePage').trigger('create');
+		}else{
+			$("#submit_data").html("salfie Sync Completted");
+			localStorage.step_flag=1;
+			localStorage.salfiedataSubmit=1;
+			
+			var url = "#menuPage";
+			$.mobile.navigate(url);	
+			$('#menuPage').trigger('create');
+		}		
 	}else{
 					
 		if (localStorage.step_flag==1){  // Shop
@@ -3632,7 +3659,8 @@ function munu_page_check(){
 				}
 		else{
 			check_route();
-			var url = "#menuPage";
+			//var url = "#menuPage";
+			var url = "#outletPage";
 			$.mobile.navigate(url);
 		}
 }

@@ -193,15 +193,15 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 				<br><br><br>
 				
 				  <ul data-role="listview">							
-                        <div style="background:#008A8A; height:1px"></div>
-                        <li id="link_route"><a onClick="check_route()"><img src="visit_plan.png"></a></li>
-                        <div style="background:#008A8A; height:1px"></div>
-                        </br></br></br>
-                        <div style="background:#008A8A; height:1px"></div>
-                        <li><a onClick="syncPage()" ><img src="sync.png"></a></li>
-                        <div style="background:#008A8A; height:1px"></div>
-                        <!--<li><a onClick="clear_autho()" href="#login">Clear Authorization</a></li>
-                        <div style="background:#008A8A; height:1px"></div>-->
+                    <!--<div style="background:#008A8A; height:1px"></div>
+                    	<li id="link_route"><a onClick="check_route()"><img src="visit_plan.png"></a></li>
+                    <div style="background:#008A8A; height:1px"></div>
+                    </br></br></br>-->
+                    <div style="background:#008A8A; height:1px"></div>
+                    	<li><a onClick="syncPage()" ><img src="sync.png"></a></li>
+                    <div style="background:#008A8A; height:1px"></div>
+                    <!--<li><a onClick="clear_autho()" href="#login">Clear Authorization</a></li>
+                    <div style="background:#008A8A; height:1px"></div>-->
                 </ul>
                 <br>
 				<div style="margin:100%;"></div>
@@ -226,8 +226,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                <a data-role="button" onClick="chkNotice(1)" ><img src="notice_icon.png"></a>               	
                <!--<a data-role="button" onClick="competitor_info()" >COMPETITOR INFO</a>-->				
                 </font>
-                <br/><br/>
-                <div align="right"  style="color:#A4C5D9; width:100%; ">Version:20171231.1</div>
+                <br/>
+                <div align="right"  style="color:#A4C5D9; width:100%; ">Version:20180125.1</div>
                 <div class="errMsg" style="color:#006291"></div>
                 <br/><br/><br/>                
                 <!--<div id="versionDiv" style="color:#006291; height:30px; text-align:center; padding:5px; background-color:#FFFFF4; font-size:12px; border-radius:3px;"><a href="http://im-gp.com/d/maricoaudit/" target="new">New Version Available</a></div>-->                
@@ -241,7 +241,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         	
             <div data-theme="c" data-role="header" data-position="fixed" >
 			
-			   <a style="height:18px;"   onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+			   <a style="height:18px;"   onClick="menu_page()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
                <a style="height:18px;" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right " onClick="exit()" ><img src="exit.png"> </a>
                 <h3>Login</h3>
             </div>
@@ -273,7 +273,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
      <!--  ====================== routePage ======================  -->
 		<div data-theme="c" data-role="page" id="routePage">
 			<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style=" height:18px"   onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+			    <a style=" height:18px"   onClick="menu_page()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Select Route/Beat</h3>
             </div>
@@ -328,9 +328,9 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<div data-theme="c" data-role="page" id="outletPage">
 			
 			<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a id="menujpj" style="height:18px"   onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+			    <a id="menujpj" style="height:18px"   onClick="check_route()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
                 <a id="backjpj" style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
-               <!-- <a id="backjpj" data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>-->
+               
                 <h3>Select Outlet</h3>
             </div>
 		    
@@ -647,7 +647,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             </div>
 		    
 			<div  data-role="content" style="height:90%;"  >
-            <br/><br/>
+            <br/>
             <div id="notice_list_show"></div>
                
                <!--<div id="submit_data"></div>-->
@@ -718,12 +718,12 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     
     <div data-theme="c" data-role="page" id="salfiePage">
 		<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
-                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+			    <a style="height:18px" onClick="menu_page()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right" onClick="backClick();"><img src="back1.png"></a>
                 <h3>Selfie</h3>
             </div>
 		    
-			<div  data-role="content" style="height:90%" >		  		  
+			<div  data-role="content">		  		  
 		  	<br/><br/>
             <div id="currentDate" style="text-align:center; font-size:20px; font-weight:bold;"></div>
             <ul data-role="listview" data-inset="true" data-mini="true">               
@@ -745,12 +745,10 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 				
 				<!--<a data-role="button" onClick="outlet_next_page();getlocationand_askhelp();" >Next</a>-->
 				<a data-role="button" onClick="salfie_next_page();" >Next</a>
-				
+				<br/>
+                <div class="errMsg" style="color:#006291"></div>
 				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
 				
-              <div class="errMsg" style="color:#006291"></div>
-                <br/><br/>
-                <br/><br/><br/>
 	  </div>
 
 	</div>
