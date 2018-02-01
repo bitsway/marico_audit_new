@@ -3,14 +3,13 @@
 // Put your custom code here
 
 // online
-var apipath='http://w02.yeapps.com/marico18/syncmobile_schedule_20171231/';
+var apipath='http://w02.yeapps.com/marico18/syncmobile/';
 var apipath_image = 'http://w02.yeapps.com/marico18/';
 
 
 // local
-//var apipath='http://127.0.0.1:8000/marico18/syncmobile_schedule_20171231/';
+//var apipath='http://127.0.0.1:8000/marico18/syncmobile/';
 //var apipath_image = 'http://127.0.0.1:8000/marico18/';
-
 
 
 localStorage.step_flag=0; 
@@ -111,7 +110,7 @@ function backClick(){
 //--- version
 function chkVersion(){
 	
-	var presentVDate="2018/01/25"; //  2016/06/14
+	var presentVDate="2017/12/30"; //  2016/06/14
 	
 	//alert(apipath+'sync_app_version?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode);
 	
@@ -257,7 +256,6 @@ function salfie_next_page(){
 							}*/
 									
 						}else if(result=='Already Exists'){
-							
 							//$(".errMsg").html(result); // Faisal
 							$.mobile.navigate("#menuPage");// Faisal
 							//$.mobile.navigate("#routePage");												
@@ -894,7 +892,8 @@ function cancel_outlet(){
 	localStorage.compdataSubmit=0;
 	localStorage.selfdataSubmit=0;
 	
-	
+	localStorage.displayDataSubmit=0;
+	localStorage.posmCompDataSubmit=0;
 	//localStorage.placeLatLongCount=0;
 	
 	
@@ -2764,11 +2763,12 @@ function submit_data() {
 function getAchivementImage_display() {
 	var tempTime = $.now();
 	display_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+"_display.jpg";
+	//alert(display_image_name);
 	$("#achPhoto_display_name").val(display_image_name);
 	$("#achPhoto_display_div").val(display_image_name);
 	
-	navigator.camera.getPicture(onSuccessA, onFailA, { quality: 50,
-	targetWidth: 300,
+	navigator.camera.getPicture(onSuccessA, onFailA, { quality: 60,
+	targetWidth: 350,
 	destinationType: Camera.DestinationType.FILE_URI,correctOrientation: true});		
 }
 
@@ -2788,11 +2788,12 @@ function onFailA(message) {
 function getAchivementImage_posm() {
 	var tempTime = $.now();
 	posm_comp_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+"_posm_competitor.jpg";
+	//alert(posm_comp_image_name);
 	$("#achPhoto_posm_name").val(posm_comp_image_name);
 	$("#achPhoto_posm_div").val(posm_comp_image_name);
 	
-	navigator.camera.getPicture(onSuccessB, onFailB, { quality: 50,
-	targetWidth: 300,
+	navigator.camera.getPicture(onSuccessB, onFailB, { quality: 60,
+	targetWidth: 350,
 	destinationType: Camera.DestinationType.FILE_URI,correctOrientation: true});		
 }
 
