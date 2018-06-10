@@ -2728,7 +2728,7 @@ function submit_data() {
 	var fdisplay_data=""; //localStorage.fdisplay_data_ready.replace('detaildetail','')
 	var qpds_data=localStorage.qpds_data_ready.replace('detaildetail','')
 	
-	alert(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx=&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&comInfoStockData='+localStorage.comInfStData+'&fromDate='+fromDate+'&toDate='+toDate+'&monthlyTK='+monthlyTK+'&imageName='+display_comp_name+'&imageNamePosm='+posm_comp_name+'&mustHaveData='+localStorage.mustHData+'&giftImage=&mhskus_data=&npd_data=&fdisplay_data=&qpds_data='+encodeURIComponent(qpds_data)+'&salfie_data=&gift_data=&place_data=&shop_data='+localStorage.shop_data_ready+'&unpaid_data=&posm_data=&competitor_data=&self_data=&survey_data=0,0,0,0,0,0');
+	//alert(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx=&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&comInfoStockData='+localStorage.comInfStData+'&fromDate='+fromDate+'&toDate='+toDate+'&monthlyTK='+monthlyTK+'&imageName='+display_comp_name+'&imageNamePosm='+posm_comp_name+'&mustHaveData='+localStorage.mustHData+'&giftImage=&mhskus_data=&npd_data=&fdisplay_data=&qpds_data='+encodeURIComponent(qpds_data)+'&salfie_data=&gift_data=&place_data=&shop_data='+localStorage.shop_data_ready+'&unpaid_data=&posm_data=&competitor_data=&self_data=&survey_data=0,0,0,0,0,0');
 	
 	$.ajax({
 				type: 'POST',
@@ -3063,7 +3063,7 @@ function upload_salfie(){
 		
 	var image_name_salfie=$("#salfie_image_name_hidden").val();
 	var salfie_image_path=$("#salfie_image_div_hidden").val();
-	alert(image_name_salfie);
+	//alert(image_name_salfie);
 	if (image_name_salfie.length >10){
 			uploadPhoto(salfie_image_path, image_name_salfie);
 			$("#submit_data").html("");
@@ -3084,7 +3084,7 @@ function upload_shop(){
 
 	var image_name_shop=$("#shop_image_name_hidden").val();
 	var shop_image_path=$("#shop_image_div_hidden").val();
-	alert(image_name_shop);
+	//alert(image_name_shop);
 	if (image_name_shop.length >10){
 			uploadPhoto(shop_image_path, image_name_shop);
 			$("#submit_data").html("");				
@@ -3147,7 +3147,7 @@ function upload_display(){
 	
 	var image_name_display=$("#achPhoto_display_name").val();
 	var display_image_path=$("#achPhoto_display_div").val();
-	alert(image_name_display+'-'+posm);
+	//alert(image_name_display+'-'+posm);
 	if (image_name_display.length >10){
 		uploadPhoto(display_image_path, image_name_display);
 		$("#submit_data").html("");
@@ -3164,7 +3164,7 @@ function upload_posm_comp(){
 
 	var image_name_posm_comp=$("#achPhoto_posm_name").val();
 	var posm_comp_image_path=$("#achPhoto_posm_div").val();
-	alert(image_name_posm_comp+'-'+posm);
+	//alert(image_name_posm_comp+'-'+posm);
 	if (image_name_posm_comp.length >10){
 		uploadPhoto(posm_comp_image_path, image_name_posm_comp);
 		$("#submit_data").html("");
@@ -3322,11 +3322,11 @@ function win(r) {
 	file_upload_error = 0;
 	
 	if (localStorage.step_flag==0){  
-	alert(localStorage.attendanceFlag);
+	//alert(localStorage.attendanceFlag);
 		if (localStorage.attendanceFlag==1){	// Faisal #if condition	
 			$("#submit_data").html("salfie Sync Completted");
 			localStorage.step_flag=1;
-			alert('step_flag 1');
+			//alert('step_flag 1');
 			localStorage.salfiedataSubmit=1;
 			var url = "#routePage";
 			$.mobile.navigate(url);	
@@ -3342,7 +3342,7 @@ function win(r) {
 	}else{
 								
 		if (localStorage.step_flag==1){  // Shop
-			alert('win-1')
+			//alert('win-1')
 			$("#submit_data").html("Shop Sync Completted");
 			localStorage.shopdataSubmit=1;
 			upload_shop();
@@ -3350,7 +3350,7 @@ function win(r) {
 		}
 		
 		if (localStorage.step_flag==2){  // Paid
-			alert('win-3')
+			//alert('win-3')
 			$("#submit_data").html("Paid Display Sync Completted");
 			localStorage.qpdsdataSubmit=1;
 			upload_qpds();
@@ -3376,7 +3376,7 @@ function win(r) {
 
 function fail(error) {
 	file_upload_error = 1;
-	alert('fail');
+	//alert('fail');
 //	step_flag=0; //1 fd , 2 qpds, 3 gift
 	
 	if (step_flag==1){  // salfie
@@ -3486,29 +3486,29 @@ function checkQtyQpds(i){
 
 function check_step() {	
 	//localStorage.step_flag=1;
-	alert(localStorage.step_flag);
+	//alert(localStorage.step_flag);
 	if (localStorage.step_flag==0){
 		upload_salfie();
-		alert ('chk- salfie')
+		//alert ('chk- salfie')
 	}	
 	
 	if (localStorage.step_flag==1){
-		alert ('chk- shop')
+		//alert ('chk- shop')
 		upload_shop();
 	}
 	
 	if (localStorage.step_flag==2){
-		alert ('chk- paid')
+		//alert ('chk- paid')
 		upload_qpds();
 	}
 	
 	if (localStorage.step_flag==3){
-		alert('display');
+		//alert('display');
 		upload_display();
 	}
 	
 	if (localStorage.step_flag==4){
-		alert('posm');
+		//alert('posm');
 		upload_posm_comp();
 	}
 
