@@ -3,13 +3,13 @@
 // Put your custom code here
 
 // online
-//var apipath='http://w02.yeapps.com/marico18/syncmobile_20180603/';
-//var apipath_image = 'http://w02.yeapps.com/marico18/';
+var apipath='http://w02.yeapps.com/marico18/syncmobile_20180603/';
+var apipath_image = 'http://w02.yeapps.com/marico18/';
 
 
 // local
-var apipath='http://127.0.0.1:8000/marico18/syncmobile/';
-var apipath_image = 'http://127.0.0.1:8000/marico18/';
+//var apipath='http://127.0.0.1:8000/marico18/syncmobile/';
+//var apipath_image = 'http://127.0.0.1:8000/marico18/';
 
 
 localStorage.step_flag=0; 
@@ -2345,6 +2345,7 @@ function qpds_ready_data() {
 		if (qpdsSL_image_path.length<10){
 			qpds_image_flag=1
 		}
+		alert(qpdsSL_image_name);
 		if(qpdsSL_image_name=='' || qpdsSL_image_name==undefined){
 			qpds_imageName=1
 		}
@@ -2881,43 +2882,32 @@ function get_pic_qpds(id) {
 	var div_id="qpdsSL_image_div_"+id;
 	temp_image_div=div_id;
 	var hidden_name="qpdsSL_image_name_hidden_"+id;
+	localStorage.hidden_name_qpds="qpdsSL_image_name_hidden_"+id;
 	//alert(hidden_name);
 	var tempTime = $.now();
 	qpds_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";	
-	$("#"+hidden_name).val(qpds_image_name);
+	$("#"+localStorage.hidden_name_qpds).val(qpds_image_name);
 	navigator.camera.getPicture(onSuccessQpds, onFailQpds, {  quality: 60,
 		targetWidth: 350,
 		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true});
 }
-function onSuccessQpds(message) {
-	alert('Success');
+
+function onSuccessQpds(imageURI) {
+	var image = document.getElementById(temp_image_div);
+    image.src = imageURI;
+    var hidden_path=temp_image_div.replace("qpdsSL_image_div","qpdsSL_image_div_hidden");
+	$("#"+hidden_path).val(imageURI);
 	
 }
 
 function onFailQpds(message) {	
-	$("#qpdsSL_image_name_hidden_0").val("");
-
+	localStorage.hidden_name_qpds='';
+	$("#"+localStorage.hidden_name_qpds).val("");
+	qpds_image_name='';
+	temp_image_div='';
+	imagePathA="";
     alert('Failed because: ' + message);
 }
-
-
-//function onSuccessQpds(imageURI) {
-//	var image = document.getElementById(temp_image_div);
-//    image.src = imageURI;
-//    var hidden_path=temp_image_div.replace("qpdsSL_image_div","qpdsSL_image_div_hidden");
-//	$("#"+hidden_path).val(imageURI);
-//	
-//}
-//
-//function onFailQpds(message) {	
-//	$("#qpdsSL_image_name_hidden_0").val("");
-//	var test=$("#qpdsSL_image_name_hidden_0").val();
-//	alert(test);
-//	qpds_image_name='';
-//	temp_image_div='';
-//	imagePathA="";
-//    alert('Failed because: ' + message);
-//}
 
 //===========Shop======
 //Shop
