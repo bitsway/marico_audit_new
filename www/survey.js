@@ -2876,6 +2876,7 @@ function onFailB(message) {
 var qpds_image_name='';
 //QPDS  After
 function get_pic_qpds(id) {
+	
 	//$('#qpdsdiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
 	var div_id="qpdsSL_image_div_"+id;
 	temp_image_div=div_id;
@@ -2888,22 +2889,35 @@ function get_pic_qpds(id) {
 		targetWidth: 350,
 		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true});
 }
-
-function onSuccessQpds(imageURI) {
-	var image = document.getElementById(temp_image_div);
-    image.src = imageURI;
-    var hidden_path=temp_image_div.replace("qpdsSL_image_div","qpdsSL_image_div_hidden");
-	$("#"+hidden_path).val(imageURI);
+function onSuccessQpds(message) {
+	alert('Success');
+	
 }
 
-function onFailQpds(id) {	
-alert(id);
+function onFailQpds(message) {	
+	$("#qpdsSL_image_name_hidden_0").val("");
 
-	qpds_image_name='';
-	temp_image_div='';
-	imagePathA="";
     alert('Failed because: ' + message);
 }
+
+
+//function onSuccessQpds(imageURI) {
+//	var image = document.getElementById(temp_image_div);
+//    image.src = imageURI;
+//    var hidden_path=temp_image_div.replace("qpdsSL_image_div","qpdsSL_image_div_hidden");
+//	$("#"+hidden_path).val(imageURI);
+//	
+//}
+//
+//function onFailQpds(message) {	
+//	$("#qpdsSL_image_name_hidden_0").val("");
+//	var test=$("#qpdsSL_image_name_hidden_0").val();
+//	alert(test);
+//	qpds_image_name='';
+//	temp_image_div='';
+//	imagePathA="";
+//    alert('Failed because: ' + message);
+//}
 
 //===========Shop======
 //Shop
