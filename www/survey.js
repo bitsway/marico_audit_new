@@ -2901,8 +2901,8 @@ function onSuccessQpds(imageURI) {
 }
 
 function onFailQpds(message) {	
-	localStorage.hidden_name_qpds='';
-	$("#"+localStorage.hidden_name_qpds).val("");
+	var hidden_name_qpds=localStorage.hidden_name_qpds;
+	$("#"+hidden_name_qpds).val("");
 	qpds_image_name='';
 	temp_image_div='';
 	imagePathA="";
