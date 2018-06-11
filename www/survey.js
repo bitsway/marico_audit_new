@@ -3,13 +3,13 @@
 // Put your custom code here
 
 // online
-var apipath='http://w02.yeapps.com/marico18/syncmobile_20180603/';
-var apipath_image = 'http://w02.yeapps.com/marico18/';
+//var apipath='http://w02.yeapps.com/marico18/syncmobile_20180603/';
+//var apipath_image = 'http://w02.yeapps.com/marico18/';
 
 
 // local
-//var apipath='http://127.0.0.1:8000/marico18/syncmobile/';
-//var apipath_image = 'http://127.0.0.1:8000/marico18/';
+var apipath='http://127.0.0.1:8000/marico18/syncmobile/';
+var apipath_image = 'http://127.0.0.1:8000/marico18/';
 
 
 localStorage.step_flag=0; 
@@ -2345,7 +2345,7 @@ function qpds_ready_data() {
 		if (qpdsSL_image_path.length<10){
 			qpds_image_flag=1
 		}
-		if(qpdsSL_image_name==''){
+		if(qpdsSL_image_name=='' || qpdsSL_image_name==undefined){
 			qpds_imageName=1
 		}
 		
@@ -2873,14 +2873,13 @@ function onFailB(message) {
 
 //=======+++++++++++++++++++++++++++++++++++==========
 
-var hidden_name='';
+var qpds_image_name='';
 //QPDS  After
 function get_pic_qpds(id) {
 	//$('#qpdsdiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
 	var div_id="qpdsSL_image_div_"+id;
 	temp_image_div=div_id;
-	//var hidden_name="qpdsSL_image_name_hidden_"+id;
-	hidden_name="qpdsSL_image_name_hidden_"+id;
+	var hidden_name="qpdsSL_image_name_hidden_"+id;
 	//alert(hidden_name);
 	var tempTime = $.now();
 	qpds_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";	
@@ -2897,8 +2896,9 @@ function onSuccessQpds(imageURI) {
 	$("#"+hidden_path).val(imageURI);
 }
 
-function onFailQpds(message) {
-	$("#"+hidden_name).val("");
+function onFailQpds(id) {	
+alert(id);
+
 	qpds_image_name='';
 	temp_image_div='';
 	imagePathA="";
