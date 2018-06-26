@@ -231,7 +231,7 @@ function salfie_next_page(){
 					$.mobile.navigate(url);
 			}else{															
 				
-				alert(apipath+'syncAttendanceData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&salfie_data='+salfie_image_name+'&attendance='+encodeURIComponent(attendance));
+				//alert(apipath+'syncAttendanceData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&salfie_data='+salfie_image_name+'&attendance='+encodeURIComponent(attendance));
 				
 				$.ajax({
 				type: 'POST',
@@ -249,7 +249,7 @@ function salfie_next_page(){
 								localStorage.attendanceFlag=0;
 								localStorage.attendanceType="";
 							}
-							alert(localStorage.attendanceFlag);														
+							//alert(localStorage.attendanceFlag);														
 							upload_salfie()
 							
 							/*if (localStorage.attendanceFlag==1){ // Faisal
@@ -3087,7 +3087,7 @@ function upload_salfie(){
 
 
 function upload_shop(){
-	alert('upload shop')
+	//alert('upload shop')
 	localStorage.step_flag=2;
 	localStorage.shopdataSubmit=1;
 	file_upload_error = 0;
@@ -3107,7 +3107,7 @@ function upload_shop(){
 }
 
 function upload_qpds(){
-	alert('upload Qpaid')
+	//alert('upload Qpaid')
 	//QPDS
 	localStorage.step_flag=3; 
 	file_upload_error = 0;
@@ -3185,29 +3185,29 @@ function upload_posm_comp(){
 function check_step() {
 	//$("#image_up_button").hide();	
 	//localStorage.step_flag=1;
-	alert(localStorage.step_flag);
+	//alert(localStorage.step_flag);
 	if (localStorage.step_flag==0){
 		upload_salfie();
-		alert ('chk- salfie')
+		//alert ('chk- salfie')
 	}	
 	
 	if (localStorage.step_flag==1){
-		alert ('chk- shop')
+		//alert ('chk- shop')
 		upload_shop();
 	}
 	
 	if (localStorage.step_flag==2){
-		alert ('chk- paid')
+		//alert ('chk- paid')
 		upload_qpds();
 	}
 	
 	if (localStorage.step_flag==3){
-		alert('display');
+		//alert('display');
 		upload_display();
 	}
 	
 	if (localStorage.step_flag==4){
-		alert('posm');
+		//alert('posm');
 		upload_posm_comp();
 	}
 
@@ -3238,7 +3238,7 @@ function buttonCheck(){
 		
 		$("#location_button").hide();
 		submit_data()
-		$("#sub_button_div").show();
+		$("#sub_button_div").hide();
 		$("#image_up_button").hide();
 		$("#NOutlet_button").hide();
 		//alert ('s-2');	
@@ -3286,11 +3286,11 @@ function uploadPhoto(imageURI, imageName) {
 function win(r) {
 	file_upload_error = 0;
 	
-	if (localStorage.step_flag==1){  
+	if (localStorage.step_flag==0){  
 		if (localStorage.attendanceFlag==1){	// Faisal #if condition	
 			$("#submit_data").html("salfie Sync Completted");
 			localStorage.step_flag=1;
-			alert('step_flag 1');
+			//alert('step_flag 1');
 			localStorage.salfiedataSubmit=1;
 			var url = "#routePage";
 			$.mobile.navigate(url);	
@@ -3306,7 +3306,7 @@ function win(r) {
 	}else{
 								
 		if (localStorage.step_flag==1){  // Shop
-			alert('win-1')
+			//alert('win-1')
 			$("#submit_data").html("Shop Sync Completted");
 			localStorage.shopdataSubmit=1;
 			upload_shop();
@@ -3314,7 +3314,7 @@ function win(r) {
 		}
 		
 		if (localStorage.step_flag==2){  // Paid
-			alert('win-2')
+			//alert('win-2')
 			$("#submit_data").html("Paid Display Sync Completted");
 			localStorage.qpdsdataSubmit=1;
 			upload_qpds();
@@ -3322,14 +3322,14 @@ function win(r) {
 		}
 		
 		if (localStorage.step_flag==3){  // Display
-			alert('win-3')
+			//alert('win-3')
 			$("#submit_data").html("Display Upload Completted");
 			localStorage.displayDataSubmit=1;
 			upload_display();
 			buttonCheck();
 		}
 		if (localStorage.step_flag==4){  // Display
-			alert('win-4')
+			//alert('win-4')
 			$("#submit_data").html("POSM Competitor Upload Completted");
 			localStorage.posmCompDataSubmit=1;
 			upload_posm_comp();
