@@ -73,10 +73,10 @@ $(document).ready(function(){
 				$("#login_image").hide();
 				$("#routeS_image").hide();
 				
-				/*$("#location_button").show();
+				$("#location_button").show();
 				$("#sub_button_div").hide();
 				
-				$("#image_up_button").hide();*/
+				$("#image_up_button").hide();
 				$("#NOutlet_button").hide();	
 				
 								
@@ -587,40 +587,6 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         <!--=============COMPETITOR INFO End=================-->
 	
      <!-- ============================wait page Start============================-->
-    <div data-theme="c" data-role="page" id="image_submitPage">
-		    <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px"   onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
-                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
-                <h3></h3>
-            </div>
-		    
-			<div  data-role="content" style="height:90%" >
-            	</br>
-                </br>
-                <div class="outletNameShow"> </div>
-                </br>
-                </br>
-				
-			<div id="location_button">
-			<a data-role="button" onClick="getlocationand_askhelp();" style="height:50px; text-align:center; padding-top:10%;">Confirm Location</a>
-			</div>
-            
-			<div id="image_up_button">
-        	<a   data-role="button" onClick="check_step();" style="height:50px; text-align:center; padding-top:10%;" >Next</a>			
-			</div>
-			
-            
-            <div id="get_location" style="color:#006291"></div>
-			  <div class="errMsg" style="color:#006291"></div>
-                <br/><br/>
-                <br/><br/><br/>
-	  </div>
-
-	</div>
-    
-    
-    
-    
     
     <div data-theme="c" data-role="page" id="submitPage">
 		    <div data-theme="c" data-role="header" data-position="fixed" >
@@ -636,45 +602,6 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                 </br>
                 </br>
 				<!--Location:-->
-				<input name="lat" id="lat" placesholder="" value="" type="hidden" readonly>
-			   <input name="long" id="long" placeholder="" value="" type="hidden" readonly>
-				            
-			<div id="sub_button_div">
-        	<a  data-role="button" onClick="submit_data();" style="height:50px; text-align:center; padding-top:10%;">Submit Data</a>
-			</div>			
-
-			
-			<div id="NOutlet_button" >
-        	<a  data-role="button" onClick="cancel_outlet();menupage();" style="height:50px; text-align:center; padding-top:10%;" >Select New Outlet</a>
-			</div>
-			  
-            
-            <div id="submit_data" style="color:#006291"></div>
-            <div id="submit_data_check" style="color:#006291"></div>
-			
-              <div class="errMsg" style="color:#006291"></div>
-                <br/><br/>
-                <br/><br/><br/>
-	  </div>
-
-	</div>
-        
-    <!--=====================wait page end=========================-->  
-    
-   <!--<div data-theme="c" data-role="page" id="submitPage">
-		    <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px"   onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="header_logo.png"></a>
-                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
-                <h3>Submit</h3>
-            </div>
-		    
-			<div  data-role="content" style="height:90%" >
-            	</br>
-                </br>
-                <div class="outletNameShow"> </div>
-                </br>
-                </br>
-				
 				<input name="lat" id="lat" placesholder="" value="" type="hidden" readonly>
 			   <input name="long" id="long" placeholder="" value="" type="hidden" readonly>
 				
@@ -697,14 +624,20 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             
             <div id="submit_data" style="color:#006291"></div>
             <div id="submit_data_check" style="color:#006291"></div>
-           
+            <!--<div id="submit_msg">
+				Please Wait Submitting Data............
+			</div>-->
 			
               <div class="errMsg" style="color:#006291"></div>
                 <br/><br/>
                 <br/><br/><br/>
 	  </div>
 
-	</div>-->          
+	</div>
+        
+    <!--=====================wait page end=========================-->  
+    
+             
  
    <!-- ============================notice page Start============================-->
     
