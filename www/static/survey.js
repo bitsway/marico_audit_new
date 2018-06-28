@@ -3192,27 +3192,27 @@ function upload_posm_comp(){
 function check_step() {
 	
 	if (localStorage.step_flag==0){
-		//alert ('chk- salfie')
+		alert ('chk- salfie')
 		upload_salfie();
 	}	
 	
 	if (localStorage.step_flag==1){
-		//alert ('chk- shop')
+		alert ('chk- shop')
 		upload_shop();
 	}
 	
 	if (localStorage.step_flag==2){
-		//alert ('chk- paid')
+		alert ('chk- paid')
 		upload_qpds();
 	}
 	
 	if (localStorage.step_flag==3){
-		//alert('display');
+		alert('display');
 		upload_display();
 	}
 	
 	if (localStorage.step_flag==4){
-		//alert('posm');
+		alert('posm');
 		upload_posm_comp();
 	}
 	
@@ -3226,7 +3226,7 @@ function buttonCheck(){
 	
 	if ((localStorage.latlongSubmit==0)&& (localStorage.dataSubmit==0) && (localStorage.shopdataSubmit==0) && (localStorage.qpdsdataSubmit==0)){
 		$("#location_button").show();
-		$("#sub_button_div").hide();
+		//$("#sub_button_div").hide();
 		$("#image_up_button").hide();
 		$("#NOutlet_button").hide();		
 				
@@ -3234,15 +3234,15 @@ function buttonCheck(){
 	
 	}
 	
-	/*if ((localStorage.latlongSubmit==1) && (localStorage.dataSubmit==0) && (localStorage.shopdataSubmit==0) && (localStorage.qpdsdataSubmit==0)){
+	if ((localStorage.latlongSubmit==1) && (localStorage.dataSubmit==0) && (localStorage.shopdataSubmit==0) && (localStorage.qpdsdataSubmit==0)){
 		$("#location_button").hide();
-		$("#sub_button_div").hide();
+		//$("#sub_button_div").hide();
 		$("#image_up_button").show();
 		$("#NOutlet_button").hide();
 		//alert ('s-2');	
 	}
 	
-	if ((localStorage.latlongSubmit==1) && (localStorage.dataSubmit==0) && (localStorage.shopdataSubmit==1) && (localStorage.qpdsdataSubmit==1)){
+	/*if ((localStorage.latlongSubmit==1) && (localStorage.dataSubmit==0) && (localStorage.shopdataSubmit==1) && (localStorage.qpdsdataSubmit==1)){
 		
 		$("#location_button").hide();
 		submit_data()
@@ -3306,14 +3306,14 @@ function win(r) {
 			//$("#submit_data").html("salfie Sync Completted");
 			localStorage.step_flag=1;
 			localStorage.salfiedataSubmit=1;
-			var url = "#menuPage";
-			$.mobile.navigate(url);	
-			$('#menuPage').trigger('create');
+			//var url = "#menuPage";
+			//$.mobile.navigate(url);	
+			//$('#menuPage').trigger('create');
 		}		
 	}else{
 										
 		if (localStorage.step_flag==1){  // Shop
-			//alert('win-1')
+			alert('win-1')
 			$("#submit_data").html("Shop Sync Completted");
 			localStorage.shopdataSubmit=1;
 			upload_shop();
@@ -3321,7 +3321,7 @@ function win(r) {
 		}
 		
 		if (localStorage.step_flag==2){  // Paid
-			//alert('win-2')
+			alert('win-2')
 			$("#submit_data").html("Paid Display Sync Completted");
 			localStorage.qpdsdataSubmit=1;
 			upload_qpds();
@@ -3329,18 +3329,18 @@ function win(r) {
 		}
 		
 		if (localStorage.step_flag==3){  // Display
-			//alert('win-3')
-			$("#submit_data").html("Display Upload Completted");
+			alert('win-3')
+			//$("#submit_data").html("Display Upload Completted");
 			localStorage.displayDataSubmit=1;
 			upload_display();
-			buttonCheck();
+			//buttonCheck();
 		}
 		if (localStorage.step_flag==4){  // Display
-			//alert('win-4')
-			$("#submit_data").html("POSM Competitor Upload Completted");
+			alert('win-4')
+			//$("#submit_data").html("POSM Competitor Upload Completted");
 			localStorage.posmCompDataSubmit=1;
 			upload_posm_comp();
-			buttonCheck();
+			//buttonCheck();
 		}
 		
 		localStorage.step_flag=1; //Reset step flag 
@@ -3354,34 +3354,36 @@ function fail(error) {
 //	step_flag=0; //1 fd , 2 qpds, 3 gift
 	
 	if (step_flag==1){  // salfie
-		//alert('Fail- 1')
+		alert('Fail- 1')
 		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
 		localStorage.salfiedataSubmit=0;
-		buttonCheck();
+		//buttonCheck();
 	}
 	if (step_flag==2){  // Shop
-		//alert('Fail- 2')
+		alert('Fail- 2')
 		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
 		localStorage.shopdataSubmit=0;
-		//buttonCheck();
+		buttonCheck();
 	}
 	
 	if (step_flag==3){ // QPDS
-		//alert('Fail- 3')
+		alert('Fail- 3')
 		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
 		localStorage.qpdsdataSubmit=0;
-		//buttonCheck();
+		buttonCheck();
 	}
 	
 	if (step_flag==4){ // Display
+		alert('Fail- 3')
 		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
 		localStorage.displayDataSubmit=0;
-		buttonCheck();
+		//buttonCheck();
 	}
 	if (step_flag==5){ // POSM Competitor
+		alert('Fail- 5')
 		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
 		localStorage.posmCompDataSubmit=0;
-		buttonCheck();
+		//buttonCheck();
 	}
 	
 	step_flag=0; //Reset step flag
