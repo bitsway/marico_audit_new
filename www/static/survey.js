@@ -11,7 +11,7 @@ var apipath_image = 'http://w02.yeapps.com/marico18/';
 //var apipath='http://127.0.0.1:8000/marico18/syncmobile/';
 //var apipath_image = 'http://127.0.0.1:8000/marico18/';
 
-localStorage.selfie_flag=0; 
+//localStorage.selfie_flag=0; 
 localStorage.step_flag=0; 
 var step_flag=0; //1 fd , 2 qpds, 3 gift
 
@@ -250,7 +250,9 @@ function salfie_next_page(){
 								localStorage.attendanceFlag=0;
 								localStorage.attendanceType="";
 							}
-							//alert(localStorage.attendanceFlag);														
+							//alert(localStorage.attendanceFlag);	
+							//localStorage.selfie_flag=1;
+																				
 							upload_salfie()
 							
 							/*if (localStorage.attendanceFlag==1){ // Faisal
@@ -3060,6 +3062,7 @@ function onFailSelf(message) {
 
 function upload_salfie(){
 	//alert('upload salfie')
+	//localStorage.selfie_flag=1;
 	localStorage.step_flag=0; 
 	localStorage.salfiedataSubmit=0;
 	//step_flag=2; //1 fd , 2 qpds, 3 gift
@@ -3244,7 +3247,7 @@ function buttonCheck(){
 	
 		$("#location_button").hide();
 		$("#sub_button_div").hide();
-
+		
 		$("#image_up_button").hide();
 		$("#NOutlet_button").show();
 		//alert ('s-7');
@@ -3366,63 +3369,6 @@ function win(r) {
 	localStorage.selfie_flag=1;
 }
 
-
-/*function win(r) {
-	file_upload_error = 0;
-	
-	if (localStorage.step_flag==0){  
-		if (localStorage.attendanceFlag==1){	
-			$("#submit_data").html("salfie Sync Completted");
-			localStorage.step_flag=1;
-			localStorage.salfiedataSubmit=1;
-			var url = "#routePage";
-			$.mobile.navigate(url);	
-			$('#routePage').trigger('create');
-		}else{
-			//$("#submit_data").html("salfie Sync Completted");
-			localStorage.step_flag=1;
-			localStorage.salfiedataSubmit=1;
-			//var url = "#menuPage";
-			//$.mobile.navigate(url);	
-			//$('#menuPage').trigger('create');
-		}		
-	}else{
-										
-		if (localStorage.step_flag==1){  // Shop
-			alert('win-1')
-			$("#submit_data").html("Shop Sync Completted");
-			localStorage.shopdataSubmit=1;
-			upload_shop();
-			buttonCheck();
-		}
-		
-		if (localStorage.step_flag==2){  // Paid
-			alert('win-2')
-			$("#submit_data").html("Paid Display Sync Completted");
-			localStorage.qpdsdataSubmit=1;
-			upload_qpds();
-			buttonCheck();
-		}
-		
-		if (localStorage.step_flag==3){  // Display
-			alert('win-3')
-			//$("#submit_data").html("Display Upload Completted");
-			localStorage.displayDataSubmit=1;
-			upload_display();
-			//buttonCheck();
-		}
-		if (localStorage.step_flag==4){  // Display
-			alert('win-4')
-			//$("#submit_data").html("POSM Competitor Upload Completted");
-			localStorage.posmCompDataSubmit=1;
-			upload_posm_comp();
-			//buttonCheck();
-		}
-		
-		localStorage.step_flag=1; //Reset step flag 
-	}
-	
-}*/
 
 function fail(error) {
 	file_upload_error = 1;
