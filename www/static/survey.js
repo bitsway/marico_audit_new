@@ -3,7 +3,7 @@
 // Put your custom code here
 
 // online
-var apipath='http://w02.yeapps.com/marico18/syncmobile_20180603/';
+var apipath='http://w02.yeapps.com/marico18/syncmobile_20180703/';
 var apipath_image = 'http://w02.yeapps.com/marico18/';
 
 
@@ -11,7 +11,7 @@ var apipath_image = 'http://w02.yeapps.com/marico18/';
 //var apipath='http://127.0.0.1:8000/marico18/syncmobile/';
 //var apipath_image = 'http://127.0.0.1:8000/marico18/';
 
-
+localStorage.selfie_flag=0; 
 localStorage.step_flag=0; 
 var step_flag=0; //1 fd , 2 qpds, 3 gift
 
@@ -1215,10 +1215,6 @@ function check_user() {
 //=========================set route for new date==============
 
 
-
-
-
-
 //=========================Check user=====================
 function check_route() {		
 		//alert('chk- route');
@@ -1597,12 +1593,7 @@ function marketPJP() {
 
 
 function marketPJP_check() { 
-	/*$(".errMsg").html("");
-	var url = "#routePage";
-	$.mobile.navigate(url);*/
-	
-	
-	//alert(localStorage.attendanceFlag);
+	$(".errMsg").html("");
 	if(localStorage.attendanceFlag==1){	
 		//if(localStorage.selectedRoute!=undefined){		
 			//if (localStorage.route==''){
@@ -2567,8 +2558,8 @@ function must_have_sku_data(){
 	//alert(mustHaveData);
 	
 	$(".errMsg").html("");
-	//$.mobile.navigate("#submitPage");	
-	$.mobile.navigate("#image_submitPage");		
+	$.mobile.navigate("#submitPage");	
+	//$.mobile.navigate("#image_submitPage");		
 }
 
 //competitor_info end
@@ -2783,7 +2774,7 @@ function submit_data() {
 								$("#submit_data_check").html("");
 								$("#submit_data").html('');
 								localStorage.step_flag=1;
-								
+								localStorage.selfie_flag=1;
 								
 								// Enable all disable div start
 								//$('#mhskus').find('input, textarea, button, select').attr('disabled',false);
@@ -3069,8 +3060,8 @@ function onFailSelf(message) {
 
 function upload_salfie(){
 	//alert('upload salfie')
-	localStorage.step_flag=1; 
-	localStorage.salfiedataSubmit=1;
+	localStorage.step_flag=0; 
+	localStorage.salfiedataSubmit=0;
 	//step_flag=2; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
 	//$( "#sub_qpds_button").hide();
@@ -3079,7 +3070,7 @@ function upload_salfie(){
 	var salfie_image_path=$("#salfie_image_div_hidden").val();
 	//alert(image_name_salfie);
 	if (image_name_salfie.length >10){
-			uploadPhoto(salfie_image_path, image_name_salfie);
+			uploadPhoto_selfie(salfie_image_path, image_name_salfie);
 			$("#submit_data").html("");
 			$("#get_location").html("");
 	} /*else {
@@ -3092,8 +3083,8 @@ function upload_salfie(){
 
 function upload_shop(){
 	//alert('upload shop')
-	localStorage.step_flag=2;
-	localStorage.shopdataSubmit=1;
+	localStorage.step_flag=1;
+	localStorage.shopdataSubmit=0;
 	file_upload_error = 0;
 	
 	var image_name_shop=$("#shop_image_name_hidden").val();
@@ -3114,7 +3105,7 @@ function upload_shop(){
 function upload_qpds(){
 	//alert('upload Qpaid')
 	//QPDS
-	localStorage.step_flag=3; 
+	localStorage.step_flag=2; 
 	file_upload_error = 0;
 	//$( "#sub_qpds_button").hide();
 	
@@ -3122,7 +3113,7 @@ function upload_qpds(){
 	if (typeof localStorage.qpds_data_ready === "undefined") {
 		localStorage.qpds_data_ready ="_";
 	}
- 	localStorage.qpdsdataSubmit=1;
+ 	localStorage.qpdsdataSubmit=0;
 	if (localStorage.qpds_data_ready.length > 10){
 		
 		for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
@@ -3132,7 +3123,7 @@ function upload_qpds(){
 			
 			var image_name_before=$("#qpdsSL_image_name_hidden_"+i.toString()+"_before").val();
 			var qpds_image_path_before=$("#qpdsSL_image_div_hidden_"+i.toString()+"_before").val();
-			localStorage.qpdsdataSubmit=1;
+			localStorage.qpdsdataSubmit=0;
 			if (qpds_image_path.length >10){
 				uploadPhoto(qpds_image_path, image_name);
 				$("#submit_data").html("");		
@@ -3153,8 +3144,8 @@ function upload_qpds(){
 
 
 function upload_display(){
-	localStorage.step_flag=4; 
-	localStorage.displayDataSubmit=1;
+	localStorage.step_flag=3; 
+	localStorage.displayDataSubmit=0;
 	file_upload_error = 0;
 	
 	var image_name_display=$("#achPhoto_display_name").val();
@@ -3171,8 +3162,8 @@ function upload_display(){
 }
 
 function upload_posm_comp(){
-	localStorage.step_flag=5; 
-	localStorage.posmCompDataSubmit=1;
+	localStorage.step_flag=4; 
+	localStorage.posmCompDataSubmit=0;
 	file_upload_error = 0;
 
 	var image_name_posm_comp=$("#achPhoto_posm_name").val();
@@ -3190,18 +3181,18 @@ function upload_posm_comp(){
 }
 
 function check_step() {
-	
-	if (localStorage.step_flag==0){
+	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
+	/*if (localStorage.step_flag==0){
 		alert ('chk- salfie')
 		upload_salfie();
-	}	
-	
-	if (localStorage.step_flag==1){
+	}*/	
+	alert(localStorage.selfie_flag);
+	if (localStorage.selfie_flag==1){
 		alert ('chk- shop')
 		upload_shop();
 	}
 	
-	if (localStorage.step_flag==2){
+	/*if (localStorage.step_flag==2){
 		alert ('chk- paid')
 		upload_qpds();
 	}
@@ -3214,7 +3205,7 @@ function check_step() {
 	if (localStorage.step_flag==4){
 		alert('posm');
 		upload_posm_comp();
-	}
+	}*/
 	
 	var url = "#submitPage";
 	$.mobile.navigate(url);	
@@ -3229,9 +3220,6 @@ function buttonCheck(){
 		//$("#sub_button_div").hide();
 		$("#image_up_button").hide();
 		$("#NOutlet_button").hide();		
-				
-		//alert ('s-1');
-	
 	}
 	
 	if ((localStorage.latlongSubmit==1) && (localStorage.dataSubmit==0) && (localStorage.shopdataSubmit==0) && (localStorage.qpdsdataSubmit==0)){
@@ -3239,10 +3227,10 @@ function buttonCheck(){
 		//$("#sub_button_div").hide();
 		$("#image_up_button").show();
 		$("#NOutlet_button").hide();
-		//alert ('s-2');	
 	}
-	
-	/*if ((localStorage.latlongSubmit==1) && (localStorage.dataSubmit==0) && (localStorage.shopdataSubmit==1) && (localStorage.qpdsdataSubmit==1)){
+	//localStorage.shopdataSubmit=1;
+	//localStorage.qpdsdataSubmit=1;
+	if ((localStorage.latlongSubmit==1)&& (localStorage.shopdataSubmit==1) && (localStorage.qpdsdataSubmit==1) && (localStorage.dataSubmit==0) ){
 		
 		$("#location_button").hide();
 		submit_data()
@@ -3250,7 +3238,7 @@ function buttonCheck(){
 		$("#image_up_button").hide();
 		$("#NOutlet_button").hide();
 		//alert ('s-2');	
-	}*/
+	}
 	
 	if ((localStorage.latlongSubmit==1) && (localStorage.dataSubmit==1) && (localStorage.shopdataSubmit==1) && (localStorage.qpdsdataSubmit==1)){
 	
@@ -3269,7 +3257,61 @@ function buttonCheck(){
 
 
 //-------------------------------------------------------------------------
+//File upload \Selfie
+function uploadPhoto_selfie(imageURI, imageName) {
+ 
+  var options = new FileUploadOptions();
+  options.fileKey="upload";
+//  options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+  options.fileName=imageName;
+//	options.fileName = options.fileName
+  options.mimeType="image/jpeg";
 
+  var params = {};
+  params.value1 = "test";
+  params.value2 = "param";
+  options.params = params;
+  
+  options.chunkedMode = false;
+
+  var ft = new FileTransfer();
+ ft.upload(imageURI, encodeURI("http://i001.yeapps.com/image_hub/marico_audit/upload_image/"),win_selfie,fail_selfie,options);
+}
+
+function win_selfie(r) {
+	file_upload_error = 0;
+	
+	if (localStorage.step_flag==0){  
+		if (localStorage.attendanceFlag==1){	
+			$("#submit_data").html("salfie Sync Completted");
+			localStorage.selfie_flag=1;
+			localStorage.salfiedataSubmit=1;
+			var url = "#routePage";
+			$.mobile.navigate(url);	
+			$('#routePage').trigger('create');
+		}else{
+			//$("#submit_data").html("salfie Sync Completted");
+			localStorage.selfie_flag=1;
+			localStorage.salfiedataSubmit=1;
+			var url = "#menuPage";
+			$.mobile.navigate(url);	
+			$('#menuPage').trigger('create');
+		}
+	}
+}
+
+function fail_selfie(error) {
+	file_upload_error = 1;
+	
+	if (step_flag==1){  
+		alert('Fail- 1')
+		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
+		localStorage.salfiedataSubmit=0;
+	}
+	step_flag=0; //Reset step flag
+}
+
+//======================================
 //File upload \
 function uploadPhoto(imageURI, imageName) {
  
@@ -3292,6 +3334,40 @@ function uploadPhoto(imageURI, imageName) {
 }
 
 function win(r) {
+	file_upload_error = 0;						
+	if (localStorage.step_flag==1){  // Shop
+		alert('win-1')
+		$("#submit_data").html("Shop Sync Completted");
+		localStorage.shopdataSubmit=1;
+		upload_qpds();
+		buttonCheck()
+	}
+	
+	if (localStorage.step_flag==2){  // Paid
+		alert('win-2')
+		$("#submit_data").html("Paid Display Sync Completted");
+		localStorage.qpdsdataSubmit=1;
+		upload_display();
+		buttonCheck()
+	}
+	
+	if (localStorage.step_flag==3){  // Display
+		alert('win-3')
+		//$("#submit_data").html("Display Upload Completted");
+		localStorage.displayDataSubmit=1;
+		upload_posm_comp();
+	}
+	if (localStorage.step_flag==4){  // Display
+		alert('win-4')
+		//$("#submit_data").html("POSM Competitor Upload Completted");
+		localStorage.posmCompDataSubmit=1;
+	}
+	localStorage.step_flag=1
+	localStorage.selfie_flag=1;
+}
+
+
+/*function win(r) {
 	file_upload_error = 0;
 	
 	if (localStorage.step_flag==0){  
@@ -3346,46 +3422,37 @@ function win(r) {
 		localStorage.step_flag=1; //Reset step flag 
 	}
 	
-}
+}*/
 
 function fail(error) {
 	file_upload_error = 1;
-	//alert('fail');
-//	step_flag=0; //1 fd , 2 qpds, 3 gift
 	
-	if (step_flag==1){  // salfie
+	if (step_flag==1){  
 		alert('Fail- 1')
-		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
-		localStorage.salfiedataSubmit=0;
-		//buttonCheck();
-	}
-	if (step_flag==2){  // Shop
-		alert('Fail- 2')
 		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
 		localStorage.shopdataSubmit=0;
 		buttonCheck();
 	}
-	
-	if (step_flag==3){ // QPDS
-		alert('Fail- 3')
+	if (step_flag==2){  
+		alert('Fail- 2')
 		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
 		localStorage.qpdsdataSubmit=0;
 		buttonCheck();
 	}
 	
-	if (step_flag==4){ // Display
+	if (step_flag==3){ 
 		alert('Fail- 3')
 		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
 		localStorage.displayDataSubmit=0;
-		//buttonCheck();
-	}
-	if (step_flag==5){ // POSM Competitor
-		alert('Fail- 5')
-		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
-		localStorage.posmCompDataSubmit=0;
-		//buttonCheck();
+		buttonCheck();
 	}
 	
+	if (step_flag==4){ 
+		alert('Fail- 4')
+		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
+		localStorage.posmCompDataSubmit=0;
+		buttonCheck();
+	}
 	step_flag=0; //Reset step flag
 }
 
