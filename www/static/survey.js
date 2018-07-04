@@ -3236,8 +3236,8 @@ function buttonCheck(){
 	if ((localStorage.latlongSubmit==1)&& (localStorage.shopdataSubmit==1) && (localStorage.qpdsdataSubmit==1) && (localStorage.dataSubmit==0) ){
 		
 		$("#location_button").hide();
-		submit_data()
-		$("#sub_button_div").hide();
+		//submit_data()
+		$("#sub_button_div").show();
 		$("#image_up_button").hide();
 		$("#NOutlet_button").hide();
 		//alert ('s-2');	
@@ -3350,7 +3350,7 @@ function win(r) {
 		$("#submit_data").html("Paid Display Sync Completted");
 		localStorage.qpdsdataSubmit=1;
 		upload_display();
-		buttonCheck()
+		buttonCheck();
 	}
 	
 	if (localStorage.step_flag==3){  // Display
@@ -3358,11 +3358,13 @@ function win(r) {
 		//$("#submit_data").html("Display Upload Completted");
 		localStorage.displayDataSubmit=1;
 		upload_posm_comp();
+		buttonCheck();
 	}
 	if (localStorage.step_flag==4){  // Display
 		//alert('win-4')
 		//$("#submit_data").html("POSM Competitor Upload Completted");
 		localStorage.posmCompDataSubmit=1;
+		buttonCheck();
 	}
 	localStorage.step_flag=1
 	localStorage.selfie_flag=1;
