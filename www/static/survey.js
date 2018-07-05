@@ -2696,7 +2696,8 @@ function submit_data() {
 	
 	//munu_page_check();
 	$("#location_button").hide();
-	$("#sub_button").hide();
+	//$("#sub_button").hide();
+	$("#sub_button_div").hide();
 	
 	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	//=========================AJAX Submit==========================	
@@ -2719,7 +2720,7 @@ function submit_data() {
 	}
 	
 		
-	$( "#sub_button_div").hide();
+	//$( "#sub_button_div").hide();
 	
 	if (localStorage.mar_distrib_data==undefined || localStorage.mar_distrib_data=="undefined"){
 		localStorage.mar_distrib_data=""
@@ -2805,8 +2806,8 @@ function submit_data() {
 				      }, 
 				  error: function(result) {
 					 // alert (result);
-					 $("#sub_button").show();
-					 
+					 //$("#sub_button").show();
+					 $( "#sub_button_div").show();
 					// $("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
 					 localStorage.dataSubmit=0;
 					 buttonCheck();
@@ -3184,6 +3185,7 @@ function upload_posm_comp(){
 }
 
 function check_step() {
+	$("#image_up_button").hide();
 	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	/*if (localStorage.step_flag==0){
 		alert ('chk- salfie')
@@ -3339,7 +3341,7 @@ function win(r) {
 	file_upload_error = 0;						
 	if (localStorage.step_flag==1){  // Shop
 		//alert('win-1')
-		$("#submit_data").html("Shop Sync Completted");
+		//$("#submit_data").html("Shop Sync Completted");
 		localStorage.shopdataSubmit=1;
 		upload_qpds();
 		buttonCheck()
@@ -3347,7 +3349,7 @@ function win(r) {
 	
 	if (localStorage.step_flag==2){  // Paid
 		//alert('win-2')
-		$("#submit_data").html("Paid Display Sync Completted");
+		//$("#submit_data").html("Paid Display Sync Completted");
 		localStorage.qpdsdataSubmit=1;
 		upload_display();
 		buttonCheck();
