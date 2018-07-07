@@ -3186,7 +3186,7 @@ function upload_posm_comp(){
 function check_step() {
 	
 	$("#image_up_button").hide();
-	$("#submit_image").html('<img height="40px" width="40px" src="loading.gif">');
+	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	/*if (localStorage.step_flag==0){
 		alert ('chk- salfie')
 		upload_salfie();
@@ -3239,8 +3239,7 @@ function buttonCheck(){
 		
 		$("#location_button").hide();
 		//submit_data()
-		$("#submit_image").hide();
-		$("#submit_image").val("");
+		$("#submit_data").html("");
 		$("#sub_button_div").show();
 		$("#image_up_button").hide();
 		$("#NOutlet_button").hide();
