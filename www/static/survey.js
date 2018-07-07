@@ -2693,11 +2693,10 @@ function addPaidDisplay(){
 
 
 function submit_data() { 
-	
+	$("#sub_button_div").hide();
 	//munu_page_check();
 	$("#location_button").hide();
-	//$("#sub_button").hide();
-	$("#sub_button_div").hide();
+	//$("#sub_button").hide();	
 	
 	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	//=========================AJAX Submit==========================	
@@ -2720,7 +2719,7 @@ function submit_data() {
 	}
 	
 		
-	//$( "#sub_button_div").hide();
+	$( "#sub_button_div").hide();
 	
 	if (localStorage.mar_distrib_data==undefined || localStorage.mar_distrib_data=="undefined"){
 		localStorage.mar_distrib_data=""
@@ -3075,7 +3074,7 @@ function upload_salfie(){
 	//alert(image_name_salfie);
 	if (image_name_salfie.length >10){
 			uploadPhoto_selfie(salfie_image_path, image_name_salfie);
-			$("#submit_data").html("");
+			//$("#submit_data").html("");
 			$("#get_location").html("");
 	} /*else {
 			$("#submit_data").html("Salfie Image Not Available");
@@ -3096,7 +3095,7 @@ function upload_shop(){
 	
 	if (image_name_shop.length >10){
 			uploadPhoto(shop_image_path, image_name_shop);
-			$("#submit_data").html("");	
+			//$("#submit_data").html("");	
 			$("#get_location").html("");				
 	}/* else {
 
@@ -3130,7 +3129,7 @@ function upload_qpds(){
 			localStorage.qpdsdataSubmit=0;
 			if (qpds_image_path.length >10){
 				uploadPhoto(qpds_image_path, image_name);
-				$("#submit_data").html("");		
+				//$("#submit_data").html("");		
 				$("#get_location").html("");	
 				}
 				/*else{
@@ -3157,7 +3156,7 @@ function upload_display(){
 	//alert(image_name_display+'-'+posm);
 	if (image_name_display.length >10){
 		uploadPhoto(display_image_path, image_name_display);
-		$("#submit_data").html("");
+		//$("#submit_data").html("");
 		$("#get_location").html("");
 	} /*else {
 		$("#submit_data").html("Display Image Not Available");
@@ -3175,7 +3174,7 @@ function upload_posm_comp(){
 	//alert(image_name_posm_comp+'-'+posm);
 	if (image_name_posm_comp.length >10){
 		uploadPhoto(posm_comp_image_path, image_name_posm_comp);
-		$("#submit_data").html("");
+		//$("#submit_data").html("");
 		$("#get_location").html("");
 	} /*else {
 		$("#submit_data").html("POSM Competitor Image Not Available");			
@@ -3185,8 +3184,9 @@ function upload_posm_comp(){
 }
 
 function check_step() {
+	
 	$("#image_up_button").hide();
-	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
+	$("#submit_image").html('<img height="40px" width="40px" src="loading.gif">');
 	/*if (localStorage.step_flag==0){
 		alert ('chk- salfie')
 		upload_salfie();
@@ -3239,6 +3239,8 @@ function buttonCheck(){
 		
 		$("#location_button").hide();
 		//submit_data()
+		$("#submit_image").hide();
+		$("#submit_image").val("");
 		$("#sub_button_div").show();
 		$("#image_up_button").hide();
 		$("#NOutlet_button").hide();
