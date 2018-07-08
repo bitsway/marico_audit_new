@@ -840,6 +840,7 @@ function cancel_outlet_Back(){
 }
 
 function cancel_outlet(){
+	$("#submit_data_check").html("");
 	localStorage.show_cancel=0;
 	localStorage.outletNameID='';
 	
@@ -2694,7 +2695,6 @@ function addPaidDisplay(){
 
 function submit_data() { 
 	$("#sub_button_div").hide();
-	//munu_page_check();
 	$("#location_button").hide();
 	//$("#sub_button").hide();	
 	
@@ -2718,8 +2718,6 @@ function submit_data() {
 		latlong=lat.toString()+","+long.toString()
 	}
 	
-		
-	$( "#sub_button_div").hide();
 	
 	if (localStorage.mar_distrib_data==undefined || localStorage.mar_distrib_data=="undefined"){
 		localStorage.mar_distrib_data=""
@@ -2742,9 +2740,12 @@ function submit_data() {
 						else{
 
 							if (result!='SUCCESS'){
+								$("#sub_button_div").hide();									
+								$("#NOutlet_button").show();
 								$("#submit_data_check").html(result);
 								$("#submit_data").html('');
 								$("#get_location").html('');
+																
 							}
 							if (result=='SUCCESS'){
 								
@@ -2773,7 +2774,7 @@ function submit_data() {
 								
 								
 															
-								$("#submit_data_check").html("");
+								//$("#submit_data_check").html("");
 								$("#submit_data").html('');
 								localStorage.step_flag=1;
 								localStorage.selfie_flag=1;
@@ -3086,6 +3087,7 @@ function upload_salfie(){
 
 function upload_shop(){
 	//alert('upload shop')
+	//buttonCheck();
 	localStorage.step_flag=1;
 	localStorage.shopdataSubmit=0;
 	file_upload_error = 0;
@@ -3097,7 +3099,8 @@ function upload_shop(){
 			uploadPhoto(shop_image_path, image_name_shop);
 			//$("#submit_data").html("");	
 			$("#get_location").html("");				
-	}/* else {
+	}
+	/* else {
 
 		$("#submit_data").html("Shop Image Not Available");
 		//$("#submit_data").html("");				
@@ -3184,6 +3187,7 @@ function upload_posm_comp(){
 }
 
 function check_step(){
+	//localStorage.selfie_flag=1;
 	$("#image_up_button").hide();
 	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	/*if (localStorage.step_flag==0){
@@ -3218,6 +3222,10 @@ function check_step(){
 
 //		==========================Button check start==============
 function buttonCheck(){	
+	/*localStorage.latlongSubmit=1;
+	localStorage.shopdataSubmit=1;
+	localStorage.qpdsdataSubmit=1;*/
+	
 	
 	if ((localStorage.latlongSubmit==0)&& (localStorage.dataSubmit==0) && (localStorage.shopdataSubmit==0) && (localStorage.qpdsdataSubmit==0)){
 		$("#location_button").show();
@@ -3233,8 +3241,7 @@ function buttonCheck(){
 		$("#image_up_button").show();
 		
 	}
-	//localStorage.shopdataSubmit=1;
-	//localStorage.qpdsdataSubmit=1;
+	
 	if ((localStorage.latlongSubmit==1)&& (localStorage.shopdataSubmit==1) && (localStorage.qpdsdataSubmit==1) && (localStorage.dataSubmit==0) ){
 		
 		$("#location_button").hide();
@@ -3410,7 +3417,7 @@ function fail(error) {
 
 //============wait for data submit  
 
-function doTimer()
+/*function doTimer()
 {
   setTimeout(setSubmitmsg(),60000);
  
@@ -3418,7 +3425,7 @@ function doTimer()
 function setSubmitmsg(){
 	$("#submit_data").html("Successfully Submitted");
 	
-}
+}*/
 function setOutlet(){
 	//$("#outletButton").show();
 	localStorage.syncinfo='<div  style="color:#006A6A; font-size:18px;" id="outletName_show">'+localStorage.outletNameID +'</div>Sync Completed Successfully';
@@ -3539,7 +3546,7 @@ function checkQtyQpds(i){
 }*/
 
 function menupage(){
-	
+	$("#submit_data_check").html("");
 	var check_outlet= localStorage.outletString;
 								//alert ('<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'">')
 	localStorage.outletString=check_outlet.replace('<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'">','<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'" disabled="True">');
