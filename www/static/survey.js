@@ -3183,8 +3183,7 @@ function upload_posm_comp(){
 	
 }
 
-function check_step() {
-	
+function check_step(){
 	$("#image_up_button").hide();
 	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	/*if (localStorage.step_flag==0){
@@ -3230,8 +3229,9 @@ function buttonCheck(){
 	if ((localStorage.latlongSubmit==1) && (localStorage.dataSubmit==0) && (localStorage.shopdataSubmit==0) && (localStorage.qpdsdataSubmit==0)){
 		$("#location_button").hide();
 		//$("#sub_button_div").hide();
-		$("#image_up_button").show();
 		$("#NOutlet_button").hide();
+		$("#image_up_button").show();
+		
 	}
 	//localStorage.shopdataSubmit=1;
 	//localStorage.qpdsdataSubmit=1;
@@ -3239,24 +3239,23 @@ function buttonCheck(){
 		
 		$("#location_button").hide();
 		//submit_data()
-		$("#submit_data").html("");
-		$("#sub_button_div").show();
 		$("#image_up_button").hide();
 		$("#NOutlet_button").hide();
+		$("#submit_data").html("");
+		$("#sub_button_div").show();
+		
 		//alert ('s-2');	
 	}
 	
-	if ((localStorage.latlongSubmit==1) && (localStorage.dataSubmit==1) && (localStorage.shopdataSubmit==1) && (localStorage.qpdsdataSubmit==1)){
+	if ((localStorage.latlongSubmit==1) && (localStorage.shopdataSubmit==1) && (localStorage.qpdsdataSubmit==1) && (localStorage.dataSubmit==1)){
 	
 		$("#location_button").hide();
-		$("#sub_button_div").hide();
-		
 		$("#image_up_button").hide();
-		$("#NOutlet_button").show();
-		//alert ('s-7');
-		$("#submit_data_check").html("Successfully Submitted");		
+		$("#sub_button_div").hide();
 		$("#submit_data").html("");
 		$("#get_location").html("");
+		$("#submit_data_check").html("Successfully Submitted");		
+		$("#NOutlet_button").show();
 	}	
 
 }
