@@ -3,7 +3,7 @@
 // Put your custom code here
 
 // online
-var apipath='http://w02.yeapps.com/marico18/syncmobile_20180927/';
+var apipath='http://w02.yeapps.com/marico18/syncmobile_20180703/';
 var apipath_image = 'http://w02.yeapps.com/marico18/';
 
 
@@ -314,7 +314,7 @@ function outlet_next_page(){
 	else{
 		shop_ready_data();
 		
-		   /*if ((localStorage.routeException_found == '1') && ((localStorage.outletException=='undefined') || (localStorage.outletException==undefined))){
+		   if ((localStorage.routeException_found == '1') && ((localStorage.outletException=='undefined') || (localStorage.outletException==undefined))){
 				
 				var url = "#outletexceptionPage";
 				$.mobile.navigate(url);
@@ -322,7 +322,7 @@ function outlet_next_page(){
 				$(url).trigger('create');
 				
 			}
-			else{*/
+			else{
 				
 					if (localStorage.qpdsSkip==0){
 						var url = "#qpdsPage";
@@ -338,7 +338,7 @@ function outlet_next_page(){
 					
 					$(url).trigger('create');
 			}
-	//}
+	}
 	}else{
 		$(".errMsg").text("Require Image");
 	}
@@ -1372,16 +1372,16 @@ function check_route() {
 //=====================Check user end========================
 
 //=====================Route Exception start=====================
-/*function selectRouteException() { 
+function selectRouteException() { 
 	$(".errMsg").html("");
 	var selected_route_exception=($("input:radio[name='RadioRouteEx']:checked").val())
-   alert (selected_route_exception);
+   // alert (selected_route_exception);
 	if(selected_route_exception!=undefined){
 		localStorage.routeException=selected_route_exception;
 		var url = "#menuPage";
 		$.mobile.navigate(url);	
 	}
-}*/
+}
 //=====================Route Exception end=====================
 //=====================outlet start=====================
 function marketPJP() { 
@@ -2303,13 +2303,12 @@ function syncOutlet() {
 //=====================Route Exception start=====================
 function selectRouteException() { 
 	var selected_route_exception=($("input:radio[name='RadioRouteEx']:checked").val())
-	//alert(selected_route_exception);
 	if(selected_route_exception==undefined){
 		$(".errMsg").html("Required Exception");
 	}else{
 		localStorage.routeException=selected_route_exception;
 		$(".errMsg").html("");
-		var url = "#outletPage";
+		var url = "#menuPage";
 		$.mobile.navigate(url);	
 	}
 }
